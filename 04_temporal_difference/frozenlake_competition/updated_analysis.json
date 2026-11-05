@@ -1,0 +1,267 @@
+{
+  "budget_clarification": {
+    "source": "Professor clarification reported by user",
+    "mc_training_episodes": 30000,
+    "td_total_training_steps": 30000,
+    "runtime_seconds": 120
+  },
+  "selected_method": "qlearning",
+  "selected_configuration": "epsilon_end_001",
+  "hyperparameters": {
+    "method": "qlearning",
+    "gamma": 0.995,
+    "alpha": 0.25,
+    "alpha_scale": 50,
+    "alpha_power": 0.6,
+    "epsilon_start": 1.0,
+    "epsilon_end": 0.01,
+    "decay_fraction": 0.8,
+    "initial_q": 0.0
+  },
+  "comparison": [
+    {
+      "name": "incumbent",
+      "method": "qlearning",
+      "mean": 0.736,
+      "std": 0.010787724505195722,
+      "minimum": 0.72,
+      "maximum": 0.75,
+      "mean_training_seconds": 0.6920379200018942
+    },
+    {
+      "name": "optimistic_03",
+      "method": "qlearning",
+      "mean": 0.7255,
+      "std": 0.032428768092544004,
+      "minimum": 0.6715,
+      "maximum": 0.7525,
+      "mean_training_seconds": 0.6819391800032463
+    },
+    {
+      "name": "epsilon_end_001",
+      "method": "qlearning",
+      "mean": 0.7419999999999999,
+      "std": 0.013071916462401363,
+      "minimum": 0.72,
+      "maximum": 0.7525,
+      "mean_training_seconds": 0.8216022600041469
+    },
+    {
+      "name": "sarsa_995",
+      "method": "sarsa",
+      "mean": 0.7137,
+      "std": 0.041365142330227755,
+      "minimum": 0.643,
+      "maximum": 0.749,
+      "mean_training_seconds": 0.6072660799982259
+    },
+    {
+      "name": "mc_1_constant",
+      "method": "mc",
+      "mean": 0.7303,
+      "std": 0.009464407007309017,
+      "minimum": 0.7145,
+      "maximum": 0.7395,
+      "mean_training_seconds": 16.020353939995402
+    }
+  ],
+  "expanded_screen": [
+    {
+      "name": "q_baseline",
+      "mean": 0.6703333333333333,
+      "std": 0.11806918875529436,
+      "minimum": 0.534,
+      "maximum": 0.739,
+      "mean_training_seconds": 0.6377445999969495
+    },
+    {
+      "name": "q_gamma_0.995",
+      "mean": 0.6306666666666666,
+      "std": 0.19198524248840934,
+      "minimum": 0.409,
+      "maximum": 0.744,
+      "mean_training_seconds": 0.8430448666622397
+    },
+    {
+      "name": "q_gamma_1.0",
+      "mean": 0.7383333333333333,
+      "std": 0.006027713773341713,
+      "minimum": 0.732,
+      "maximum": 0.744,
+      "mean_training_seconds": 0.9371256000013091
+    },
+    {
+      "name": "q_995_slow_rate",
+      "mean": 0.7336666666666666,
+      "std": 0.00838649708360609,
+      "minimum": 0.724,
+      "maximum": 0.739,
+      "mean_training_seconds": 1.0430007666630747
+    },
+    {
+      "name": "q_995_fast_rate",
+      "mean": 0.707,
+      "std": 0.04504442251822081,
+      "minimum": 0.655,
+      "maximum": 0.734,
+      "mean_training_seconds": 0.9246447666616101
+    },
+    {
+      "name": "q_995_exploration",
+      "mean": 0.6276666666666667,
+      "std": 0.12382379954327574,
+      "minimum": 0.488,
+      "maximum": 0.724,
+      "mean_training_seconds": 0.7201319999973445
+    },
+    {
+      "name": "sarsa_99",
+      "mean": 0.654,
+      "std": 0.12385071659057931,
+      "minimum": 0.511,
+      "maximum": 0.727,
+      "mean_training_seconds": 0.5894772333364623
+    },
+    {
+      "name": "sarsa_995",
+      "mean": 0.7246666666666667,
+      "std": 0.0011547005383792527,
+      "minimum": 0.724,
+      "maximum": 0.726,
+      "mean_training_seconds": 0.616318133334668
+    },
+    {
+      "name": "sarsa_1",
+      "mean": 0.7040000000000001,
+      "std": 0.02563201123595256,
+      "minimum": 0.677,
+      "maximum": 0.728,
+      "mean_training_seconds": 0.6164105666636411
+    },
+    {
+      "name": "mc_995_mean",
+      "mean": 0.6613333333333333,
+      "std": 0.11373800303035626,
+      "minimum": 0.53,
+      "maximum": 0.727,
+      "mean_training_seconds": 15.951002466662127
+    },
+    {
+      "name": "mc_995_constant",
+      "mean": 0.7273333333333333,
+      "std": 0.017616280348965098,
+      "minimum": 0.707,
+      "maximum": 0.738,
+      "mean_training_seconds": 15.191940800000642
+    },
+    {
+      "name": "mc_1_constant",
+      "mean": 0.7279999999999999,
+      "std": 0.018193405398660267,
+      "minimum": 0.707,
+      "maximum": 0.739,
+      "mean_training_seconds": 19.015293499998126
+    }
+  ],
+  "paired_comparison": {
+    "training_seeds": [
+      6601,
+      6602,
+      6603,
+      6604,
+      6605
+    ],
+    "mean_difference": 0.005999999999999961,
+    "differences": [
+      0.0,
+      0.0024999999999999467,
+      0.00649999999999995,
+      0.014999999999999902,
+      0.006000000000000005
+    ],
+    "descriptive_t_interval_95": [
+      -0.0010649481280107813,
+      0.013064948128010703
+    ],
+    "limitation": "Five pairs; selection used these data. Interval is descriptive, not adjusted for model selection."
+  },
+  "official_seed_evaluation": {
+    "mean_reward": 0.73345,
+    "std_reward": 0.007357724587881194,
+    "best_reward": 0.7455,
+    "worst_reward": 0.726,
+    "seconds": 7.256104200001573,
+    "rows": [
+      {
+        "seed": 13,
+        "total_reward": 0.7455
+      },
+      {
+        "seed": 15,
+        "total_reward": 0.736
+      },
+      {
+        "seed": 45,
+        "total_reward": 0.726
+      },
+      {
+        "seed": 56,
+        "total_reward": 0.7425
+      },
+      {
+        "seed": 21,
+        "total_reward": 0.7415
+      },
+      {
+        "seed": 1,
+        "total_reward": 0.729
+      },
+      {
+        "seed": 7,
+        "total_reward": 0.726
+      },
+      {
+        "seed": 9,
+        "total_reward": 0.7285
+      },
+      {
+        "seed": 50,
+        "total_reward": 0.728
+      },
+      {
+        "seed": 47,
+        "total_reward": 0.7315
+      }
+    ]
+  },
+  "previous_submission_comparison": {
+    "mean_change": 0.0,
+    "identical_greedy_policy": true,
+    "identical_submission": true
+  },
+  "reference": {
+    "optimal_reward": null,
+    "gap_to_optimal_reward": null,
+    "official_mae": null,
+    "can_achieve_one": null
+  },
+  "interpretation": {
+    "total_reward": "Number of successful episodes divided by 2000; each episode contributes zero or one.",
+    "score": "Mean absolute per-seed error against unknown empirical reference values. Higher success need not monotonically lower this MAE.",
+    "scope": "One shared trained table; official-seed spread is evaluation variation, not independent training variability."
+  },
+  "unresolved": [
+    "Official environment version, map, horizon, RNG coupling, and training-per-seed protocol are not verified.",
+    "The previously user-approved 100-step horizon and shared-table protocol remain assumptions, not newly confirmed organizer rules.",
+    "No reference score or leaderboard threshold is available; winning and closeness to optimal cannot be established."
+  ],
+  "validation": {
+    "ten_rows": true,
+    "correct_columns": true,
+    "exact_training_replay": true,
+    "exact_evaluation_replay": true,
+    "frozen_q": true,
+    "budget_respected": true,
+    "within_120_seconds": true
+  }
+}

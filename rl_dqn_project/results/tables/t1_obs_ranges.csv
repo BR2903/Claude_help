@@ -1,0 +1,5 @@
+Policy,Dimension,|x| p99.9,|x| max,Clip
+random,cart velocity,1.943,2.829,3
+random,pole ang. velocity,2.480,2.924,3.5
+trained DQN,cart velocity,1.733,2.096,3
+trained DQN,pole ang. velocity,1.471,1.701,3.5

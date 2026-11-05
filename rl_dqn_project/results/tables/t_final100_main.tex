@@ -1,0 +1,19 @@
+\begin{table*}[t]
+\centering\small
+\caption{Final weights, 100 greedy episodes per seed on held-out start states. Mean $\pm$ 95\% t-CI over seeds of each seed's 100-episode mean; a seed passes when its own 100-episode mean reaches the official threshold. Main configurations only; every run is in results/tables/t\_final100.csv.}
+\label{tab:t_final100_main}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lrrrrr}
+\toprule
+Env & Config & 100-ep mean (final weights) & Best seed & Seeds $\ge$ threshold & Threshold \\
+\midrule
+CartPole-v1 & dqn\_eps5k & 300.2 $\pm$ 153.5 & 500.0 & 5/10 & 475 \\
+CartPole-v1 & tabular\_bins10 & 384.6 $\pm$ 87.5 & 496.1 & 4/10 & 475 \\
+MountainCar-v0 & dqn & -188.4 $\pm$ 17.9 & -131.6 & 0/10 & -110 \\
+MountainCar-v0 & tabular\_optimistic & -174.2 $\pm$ 11.4 & -151.4 & 0/10 & -110 \\
+LunarLander-v3 & full & 226.9 $\pm$ 34.3 & 272.9 & 7/10 & 200 \\
+LunarLander-v3 & no\_replay & -442.2 $\pm$ 303.1 & -125.9 & 0/10 & 200 \\
+LunarLander-v3 & no\_target & 188.2 $\pm$ 69.6 & 281.4 & 6/10 & 200 \\
+\bottomrule
+\end{tabular}}
+\end{table*}

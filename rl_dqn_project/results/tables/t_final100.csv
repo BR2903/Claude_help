@@ -1,0 +1,22 @@
+Env,Config,100-ep mean (final weights),Best seed,Seeds ≥ threshold,Threshold
+CartPole-v1,dqn_eps100k,163.0 ± 88.5,471.0,0/10,475
+CartPole-v1,dqn_eps25k,270.7 ± 116.6,500.0,3/10,475
+CartPole-v1,dqn_eps5k,300.2 ± 153.5,500.0,5/10,475
+CartPole-v1,tabular_angle_coarse,280.0 ± 69.6,500.0,1/10,475
+CartPole-v1,tabular_angle_fine_center,356.0 ± 87.9,498.4,3/10,475
+CartPole-v1,tabular_bins10,384.6 ± 87.5,496.1,4/10,475
+CartPole-v1,tabular_bins20,277.2 ± 102.0,498.9,2/10,475
+CartPole-v1,tabular_bins6,393.7 ± 70.8,491.7,1/10,475
+MountainCar-v0,dqn,-188.4 ± 17.9,-131.6,0/10,-110
+MountainCar-v0,dqn_long_eps,-174.5 ± 29.7,-99.9,1/10,-110
+MountainCar-v0,tabular_optimistic,-174.2 ± 11.4,-151.4,0/10,-110
+MountainCar-v0,tabular_pessimistic,-200.0 ± 0.0,-200.0,0/10,-110
+LunarLander-v3,double,233.8 ± 34.7,273.2,8/10,200
+LunarLander-v3,dueling,212.0 ± 43.4,274.7,7/10,200
+LunarLander-v3,full,226.9 ± 34.3,272.9,7/10,200
+LunarLander-v3,lr_0.0001,116.7 ± 140.5,257.8,1/5,200
+LunarLander-v3,lr_0.002,231.7 ± 48.1,265.9,4/5,200
+LunarLander-v3,no_replay,-442.2 ± 303.1,-125.9,0/10,200
+LunarLander-v3,no_target,188.2 ± 69.6,281.4,6/10,200
+LunarLander-v3,target_update_freq_250,193.6 ± 118.4,271.2,3/5,200
+LunarLander-v3,target_update_freq_4000,240.5 ± 22.2,256.7,5/5,200

@@ -1,0 +1,6 @@
+{
+  "_comment": "Which machine ran which seeds. Learning curves use ALL seeds (each seed is an independent run); CPU/wall-clock figures use only the 'laptop' seeds so timings come from one CPU. laptop = Lenovo LOQ 15ARP9, Ryzen 5 7235HS (4C/8T), Debian 13, Python 3.13.5. codespace = GitHub Codespaces standardLinux32gb (4 vCPU), Python 3.13.8. Same pinned requirements.txt everywhere.",
+  "tier1_cartpole":    {"laptop": [0, 1, 2, 3, 4], "codespace": [5, 6, 7, 8, 9]},
+  "tier1_mountaincar": {"laptop": [0, 1, 2, 3, 4], "codespace": [5, 6, 7, 8, 9]},
+  "tier2_lunarlander": {"laptop": [0, 1, 2, 3, 4, 8, 9], "codespace": [5, 6, 7]}
+}

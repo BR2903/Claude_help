@@ -1,0 +1,135 @@
+{
+  "config": {
+    "method": "qlearning",
+    "gamma": 0.995,
+    "alpha": 0.25,
+    "alpha_scale": 50,
+    "alpha_power": 0.6,
+    "epsilon_start": 1.0,
+    "epsilon_end": 0.01,
+    "decay_fraction": 0.8,
+    "initial_q": 0.0
+  },
+  "training": {
+    "seed": 20261001,
+    "transitions": 30000,
+    "completed_episodes": 2110,
+    "successes": 266,
+    "seconds": 1.392599099999643
+  },
+  "runs": [
+    {
+      "seed": 13,
+      "total_reward": 0.7455,
+      "episodes": 2000,
+      "successes": 1491,
+      "holes": 381,
+      "truncations": 128,
+      "transitions": 82789,
+      "seconds": 1.1623457000096096
+    },
+    {
+      "seed": 15,
+      "total_reward": 0.736,
+      "episodes": 2000,
+      "successes": 1472,
+      "holes": 398,
+      "truncations": 130,
+      "transitions": 84133,
+      "seconds": 0.8686401000013575
+    },
+    {
+      "seed": 45,
+      "total_reward": 0.726,
+      "episodes": 2000,
+      "successes": 1452,
+      "holes": 421,
+      "truncations": 127,
+      "transitions": 83761,
+      "seconds": 0.7382975000073202
+    },
+    {
+      "seed": 56,
+      "total_reward": 0.7425,
+      "episodes": 2000,
+      "successes": 1485,
+      "holes": 402,
+      "truncations": 113,
+      "transitions": 80325,
+      "seconds": 0.7742775000078836
+    },
+    {
+      "seed": 21,
+      "total_reward": 0.7415,
+      "episodes": 2000,
+      "successes": 1483,
+      "holes": 393,
+      "truncations": 124,
+      "transitions": 81520,
+      "seconds": 0.8796809000050416
+    },
+    {
+      "seed": 1,
+      "total_reward": 0.729,
+      "episodes": 2000,
+      "successes": 1458,
+      "holes": 415,
+      "truncations": 127,
+      "transitions": 82557,
+      "seconds": 0.7563385999965249
+    },
+    {
+      "seed": 7,
+      "total_reward": 0.726,
+      "episodes": 2000,
+      "successes": 1452,
+      "holes": 421,
+      "truncations": 127,
+      "transitions": 84301,
+      "seconds": 0.7817839000053937
+    },
+    {
+      "seed": 9,
+      "total_reward": 0.7285,
+      "episodes": 2000,
+      "successes": 1457,
+      "holes": 418,
+      "truncations": 125,
+      "transitions": 81219,
+      "seconds": 1.1057220000075176
+    },
+    {
+      "seed": 50,
+      "total_reward": 0.728,
+      "episodes": 2000,
+      "successes": 1456,
+      "holes": 428,
+      "truncations": 116,
+      "transitions": 84243,
+      "seconds": 1.2210631999914767
+    },
+    {
+      "seed": 47,
+      "total_reward": 0.7315,
+      "episodes": 2000,
+      "successes": 1463,
+      "holes": 416,
+      "truncations": 121,
+      "transitions": 81831,
+      "seconds": 0.9402269999991404
+    }
+  ],
+  "mean_reward": 0.73345,
+  "std_reward": 0.007357724587881194,
+  "best_reward": 0.7455,
+  "worst_reward": 0.726,
+  "optimal_reward": null,
+  "gap_to_optimal_reward": null,
+  "official_mae": null,
+  "elapsed_seconds": 10.629927499991027,
+  "q_sha256": "70f99e2a1f2548b31bc927d50202acba1a875dfc670e44ca2b9608da7b613bc3",
+  "python": "3.13.14",
+  "numpy": "2.5.1",
+  "gymnasium": "1.3.0",
+  "protocol": "User-approved shared table; 100-step horizon; 2000 episodes per seed; each fresh evaluation environment seeded once; frozen greedy Q policy. Professor clarified MC=30000 episodes, TD=30000 total transitions."
+}

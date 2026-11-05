@@ -1,0 +1,345 @@
+CARTPOLE PROJECT SUMMARY AND DQN ANALYSIS
+========================================
+
+Scope
+-----
+This report covers the CartPole activity in
+rl101-cartpole-basis-activity.ipynb and the DQN/patience/GPU work attempted
+afterward. It records what is in the user's project files, what was tested in
+temporary working files, what the user wants to investigate, and how to explain
+the proposed implementation accurately.
+
+
+1. WHAT THE USER IS TRYING TO ACHIEVE
+-------------------------------------
+The user wants to understand and extend the CartPole activity while preserving
+its original objective: choose left/right cart forces so the pole stays upright
+for as many steps as possible. CartPole-v1 returns +1 per step, so the episode
+return is the number of steps survived, capped at 500 by the time limit.
+
+The intended extension is to investigate a neural-network Q-learning agent
+(DQN) and ask whether validation-based patience/early stopping, restoring the
+best checkpoint, optional dropout, and GPU execution improve training quality
+or time. The user also explicitly asked that any extension remain faithful to
+the named CartPole activity and that the implementation be explained correctly.
+
+These are separate ideas and must be evaluated separately:
+
+  - DQN changes the hand-written policy into a learned policy.
+  - Patience decides when to stop based on validation performance.
+  - Restoring the best checkpoint keeps the strongest observed weights.
+  - Dropout is an optional network regularizer, not a necessary part of DQN.
+  - GPU execution is a device/performance experiment, not an algorithmic change.
+
+
+2. WHAT IS IN THE PROJECT FILES NOW
+-----------------------------------
+The file rl101-cartpole-basis-activity.ipynb contains 22 cells and remains the
+original introductory activity. It presents CartPole, a human-input loop,
+hand-written policies, environment experiments, and a bridge to DQN. It does
+not contain a PyTorch neural network, patience/early stopping, dropout, or a
+GPU benchmark.
+
+The separate file rl101-DQN_Replay_TargetNet_Student_Lab.ipynb is a DQN teaching
+lab. It contains a replay buffer, a Q-network, a target network, a DQN training
+loop, and experiments. Its Q-network already uses two ReLU hidden layers. It
+does not contain the patience or GPU extension described in this report.
+
+Temporary files were created outside the project folder to prototype a DQN
+extension and build/execute a copy of the CartPole notebook. A copy with Parts
+6-8 was executed successfully, but the final result was not copied into the
+user's project file. Therefore the reported prototype findings below are real
+experimental results from that temporary copy, not cells currently present in
+the user's notebook. The user-facing CartPole notebook should not be described
+as already having those features.
+
+
+3. THE ORIGINAL CARTPOLE ACTIVITY
+--------------------------------
+The observation is a four-number state:
+
+  obs[0] = cart position, x
+  obs[1] = cart velocity, x_dot
+  obs[2] = pole angle, theta
+  obs[3] = pole angular velocity, theta_dot
+
+The action space is Discrete(2): action 0 applies a fixed leftward force and
+action 1 a fixed rightward force. The state updates every 0.02 seconds. Reward
+is +1 on each transition. A true termination occurs if the cart position
+exceeds approximately +/-2.4 m or the pole angle exceeds approximately
+ +/-0.2095 radians (12 degrees). A truncation occurs when the time limit is
+reached: 500 steps in v1 and 200 in v0. Truncation is a time cutoff, not a
+physical failure.
+
+The activity evaluates hand-written policies with a common evaluate_policy
+loop. It runs episodes, asks a policy function for each action, sums rewards,
+and returns the mean and standard deviation. This makes the policy comparisons
+easy to understand, although the random policy uses a stateful random generator
+and can produce different results on successive calls.
+
+The recorded baseline results are approximately:
+
+  random actions:             23-24 steps on average
+  angle-only policy:           40.9 +/- 7.4
+  angular-velocity-only:      198.7 +/- 36.3
+  angle + K*angular velocity: 491.7 +/- 36.2 at K=1
+
+The combined rule is a hand-designed threshold controller. It uses the sign of
+theta + K*theta_dot to choose the force direction. Angle provides correction
+toward upright; angular velocity supplies a damping/anticipation signal. The
+rule is not learned by reinforcement learning. On the notebook's 20 starting
+seeds, K values around 0.1-0.5 reached the 500-step cap in tests; K=1 had one
+cart-boundary failure. Those tuning results are evidence for the rule-based
+baseline, not evidence about DQN.
+
+Known inconsistencies in the existing activity should be kept in mind:
+
+  - The human-play cell currently records an immediate Enter and score 0.0,
+    while its reflection text describes a separate earlier run with score 8
+    and a falling pole. The reflection does not match the stored output.
+  - policy_mine still raises NotImplementedError and is not in the policy map.
+  - Experiment A prints one widened-noise initial state but does not evaluate
+    performance over episodes. The displayed seed-0 angle is already outside
+    the normal failure threshold.
+  - Experiment C's policy_no_vel duplicates policy_angle, so it is not an
+    independent implementation. The angular-velocity-only policy provides the
+    complementary ablation but is not shown there.
+
+
+4. WHAT THE DQN PROTOTYPE IMPLEMENTED
+-------------------------------------
+The temporary extension added a DQN agent to the CartPole flow. Its core
+components were:
+
+  Q-network:
+    Input: four state values.
+    Hidden layers: 128 units, ReLU; 128 units, ReLU.
+    Output: two linear Q-values, one for left and one for right.
+    Number of trainable parameters: 17,410.
+    Action at evaluation time: argmax over the two Q-values.
+
+  Replay memory:
+    A fixed-size ring buffer stores state, action, reward, next state, and the
+    terminated flag. Random mini-batches reduce dependence on consecutive
+    transitions and reuse experience.
+
+  Target network:
+    A delayed copy of the online network provides the next-state target. It is
+    synchronized every 300 environment steps in the prototype.
+
+  DQN target:
+    target = reward + gamma * (1 - terminated) * max_a Q_target(next_state, a)
+    with gamma = 0.99. The update uses Smooth L1 loss and gradient clipping.
+    The terminal mask uses terminated, not truncated, so a time-limit cutoff
+    can still bootstrap from the final next state.
+
+  Exploration:
+    Epsilon-greedy action selection. Epsilon decays from 1.0 toward 0.05 over
+    5,000 steps. After the learning warm-up, batches of 64 are sampled from the
+    replay buffer.
+
+This is a genuine DQN-style Q-learning implementation: the network estimates
+action values, while replay memory and the target network stabilize the
+bootstrapped Q-learning updates. ReLU was already present in the separate DQN
+lab and was also explicitly present in the temporary CartPole extension.
+
+
+5. PATIENCE AND EARLY STOPPING: WHAT WAS TESTED
+-----------------------------------------------
+The extension evaluates a greedy policy every 1,000 environment steps on five
+fixed validation episodes (seeds 10,000 through 10,004). A validation score is
+an improvement only if it exceeds the previous best by more than min_delta=1.
+On improvement it deep-copies the online network weights and resets the count
+of bad evaluations. Otherwise it increments that count. If the count reaches
+the selected patience, training stops. With patience enabled, the returned
+network loads the weights from the best validation checkpoint rather than
+keeping the final weights.
+
+Conceptually:
+
+  best_score = -infinity
+  bad_evaluations = 0
+  at each validation checkpoint:
+      if score > best_score + min_delta:
+          save a copy of the network weights
+          best_score = score
+          bad_evaluations = 0
+      else:
+          bad_evaluations += 1
+      if bad_evaluations >= patience:
+          stop training
+  restore the saved best weights
+
+The temporary experiment ran 30,000-step budgets for three training seeds
+(0, 1, 2), with five settings. Final test performance used 20 episodes on
+seeds 0-19; these were not used for checkpoint selection. Results:
+
+  F0: patience off, return last weights: 350 / 264 / 160; mean 258.2;
+      30,000 steps per seed.
+  F1: no early stop, restore best checkpoint: 361 / 454 / 483; mean 432.7;
+      30,000 steps per seed.
+  F2: patience 3: 361 / 236 / 483; mean 360.2;
+      mean 6,667 steps, 22 percent of budget.
+  F3: patience 5: 361 / 442 / 483; mean 428.7;
+      mean 10,333 steps, 34 percent of budget.
+  F4: patience 10: 361 / 442 / 483; mean 428.7;
+      mean 15,333 steps, 51 percent of budget.
+
+Interpretation:
+
+  - The last network can be worse than an earlier network. Comparing F0 and
+    F1 isolates checkpoint restoration: both train for the full budget; only
+    the returned weights differ. In this small run the restored checkpoints
+    scored much better on the test episodes.
+  - Patience 5 recovered nearly the F1 score while using about one third of
+    the steps. Patience 3 stopped too soon for training seed 1: it stopped
+    before that run's later validation improvement and scored 236 rather than
+    442 with patience 5.
+  - The rule-based angle-plus-velocity controller scored 491.7 in its own
+    evaluation. The tested DQNs did not beat it. The network demonstration is
+    about learning Q-values and illustrating checkpointing, not proving that
+    this particular DQN is superior to the hand-designed controller.
+
+The sample is small: three training seeds, five validation episodes per
+checkpoint, and 20 test episodes. CartPole returns are noisy and capped at 500.
+The numbers support the qualitative point that restoring a good checkpoint
+can help and patience can reduce work, but they do not establish that patience
+5 is universally optimal or that small score differences are meaningful.
+
+
+6. DROPOUT: IMPORTANT DESIGN ANALYSIS
+-------------------------------------
+Dropout was not implemented in the prototype. The Q-network uses Linear and
+ReLU layers only. Therefore no result in this project demonstrates a benefit
+or cost from dropout.
+
+Dropout randomly disables hidden activations during training. It is a common
+regularizer in supervised learning, but it is not a standard requirement for
+DQN. CartPole has a small, low-dimensional state and a small network; the
+prototype's instability is primarily from bootstrapped targets, exploration,
+and a changing training distribution. Dropout can add variance to Q-value
+estimates and may destabilize action values or make validation more variable.
+
+If dropout is investigated, it must be an explicit controlled experiment:
+
+  - Compare dropout probability 0.0 (the existing baseline) with a modest
+    value such as 0.1, holding all other settings fixed.
+  - Use multiple training seeds, identical training budgets, validation seeds,
+    and separate final test seeds.
+  - Use q_net.train() during gradient updates so dropout is active, and
+    q_net.eval() for greedy action selection and validation so dropout is off.
+    Ensure the target network is also evaluated deterministically when making
+    targets; do not let validation or action selection randomly drop units.
+  - Compare final test return, variance across seeds, and training stability.
+    Do not claim dropout improved learning from a single seed or a validation
+    score used to select the model.
+
+The clearest instructional sequence is first to establish DQN with ReLU,
+replay, target network, and patience. Then add dropout as a separate ablation.
+Combining dropout, patience, and a device change all at once would make it
+impossible to identify which change caused a difference.
+
+
+7. GPU AND TRAINING-TIME EXPERIMENT
+-----------------------------------
+The tested machine had an NVIDIA GeForce RTX 4050 Laptop GPU with 6 GB VRAM,
+PyTorch 2.11.0+cu128, eight logical CPU cores, and PyTorch's default four CPU
+threads. CartPole's Gymnasium environment remained on the CPU; only the network
+and mini-batches moved to the chosen PyTorch device. CUDA synchronization was
+used around timing because GPU operations are asynchronous.
+
+For the same short 10,000-step DQN setup, measured training times were:
+
+  CPU, one thread: 24.3 s, about 412 steps/s.
+  CPU, four threads: 28.8 s, about 348 steps/s.
+  GPU: 62.0 s, about 161 steps/s.
+
+For this small 17,410-parameter model and batch size 64, GPU training was
+approximately 2.55 times slower than one CPU thread. The environment advances
+one step at a time, action selection returns to Python each step, NumPy replay
+batches must be copied to the GPU, and the network update is small. Transfer
+and launch overhead outweigh the GPU's compute advantage. Larger isolated
+matrix/update benchmarks did show the GPU winning as batch size and network
+width increased, which is expected because larger workloads amortize overhead.
+
+The 10,000-step test returns (CPU 155.4, GPU 125.2) are not reliable evidence
+that CPU training learns better: these are one run each, and small floating
+point differences can change argmax actions and cause the learning paths to
+diverge. Timing is the intended comparison. The GPU comparison should be
+repeated across runs if precise timing ratios matter.
+
+A separate single-seed CPU timing experiment measured patience:
+
+  Patience off: 30,000 steps, 85.8 s total.
+  Patience 3:    7,000 steps, 18.3 s total; about 79 percent less time.
+  Patience 5:    9,000 steps, 23.6 s total; about 72 percent less time.
+
+These are individual run measurements, not stable machine-wide guarantees.
+They show that avoiding unnecessary environment interactions helped more than
+moving this small model to the GPU.
+
+
+8. CORRECT WAY TO EXPLAIN THE IMPLEMENTATION
+--------------------------------------------
+An accurate defense is:
+
+  "The original notebook first builds intuition with hand-written CartPole
+  policies. I extended that design in a separate DQN prototype: a ReLU MLP
+  maps the four observed state values to two action values, and the agent picks
+  the action with the largest value when acting greedily. During training,
+  epsilon-greedy exploration collects transitions in replay memory; a target
+  network provides a more stable bootstrap target. Every fixed number of steps
+  I evaluate the greedy policy on held-out validation starts. Patience counts
+  consecutive evaluations without a meaningful improvement, and I restore the
+  best validation checkpoint when stopping. I then score it on separate test
+  episodes. In this experiment restoring the best checkpoint and patience
+  reduced training work, but the hand-designed combined controller still had
+  the higher measured score. Dropout was not implemented, so it has no result
+  yet and should be tested as a separate controlled experiment. On this small
+  CartPole workload the CPU was faster than the GPU because data transfers and
+  per-step overhead dominate the tiny network computation." 
+
+Key code-level defense:
+
+  1. The network has four inputs because those are the observation variables.
+     It has two outputs because there are two actions. The output layer is
+     linear because Q-values are not probabilities and may be any real value.
+  2. ReLU provides nonlinear hidden representations. It does not choose an
+     action; argmax over the output Q-values chooses the greedy action.
+  3. Replay sampling reuses and decorrelates experience. The target network
+     supplies a slowly refreshed target. The Bellman target includes the
+     discounted best next action unless the transition truly terminated.
+  4. Validation return measures the actual CartPole objective (steps survived),
+     rather than relying only on training loss. The test set estimates how the
+     chosen checkpoint performs on starts that did not choose it.
+  5. Patience is counted in evaluation checkpoints, not environment steps.
+     With eval_every=1,000 and patience=5, stopping follows five consecutive
+     non-improving validation checks, subject to the minimum-delta rule.
+  6. Restoring the best state is separate from stopping: F1 shows that saving
+     the best checkpoint can help even when the full training budget is used.
+
+
+9. NEXT IMPLEMENTATION STEPS IF THIS IDEA IS CONTINUED
+------------------------------------------------------
+To complete the user's intended project cleanly:
+
+  1. Add DQN, patience, and GPU comparison as clearly labeled new sections at
+     the end of rl101-cartpole-basis-activity.ipynb, preserving the existing
+     introductory activity and marking the added experiment explicitly.
+  2. Keep the first neural baseline dropout-free. Resolve the known Part 2
+     reflection inconsistency and label the new sections as an extension from
+     hand-designed policies to learned Q-values.
+  3. Add dropout only as a later controlled comparison (0.0 versus 0.1 or
+     another justified value), with the same seeds and hyperparameters.
+  4. Use training seeds, fixed validation seeds for patience, and separate
+     test seeds. Report per-seed returns, mean/spread, environment steps, and
+     elapsed time. Use enough independent seeds to avoid treating three runs
+     as a definitive result.
+  5. For GPU timing, warm up both devices, synchronize CUDA around measured
+     work, repeat configurations, report medians or distributions, and separate
+     environment time, learning/update time, validation time, and transfer cost.
+  6. Compare learned DQN scores to the rule-based baselines under the same
+     test protocol. The objective remains maximizing CartPole episode return,
+     with 500 as the v1 per-episode ceiling.
+
+End of report.

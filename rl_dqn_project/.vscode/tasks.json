@@ -1,0 +1,14 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    { "label": "Run ALL experiments (full, ~1 h)", "type": "shell",
+      "command": "${workspaceFolder}/../.venv/bin/python experiments/run_all.py", "problemMatcher": [] },
+    { "label": "Smoke test everything (--quick)", "type": "shell",
+      "command": "${workspaceFolder}/../.venv/bin/python experiments/run_all.py --quick", "problemMatcher": [] },
+    { "label": "Unit tests", "type": "shell", "group": "test",
+      "command": "${workspaceFolder}/../.venv/bin/python -m pytest -q tests", "problemMatcher": [] },
+    { "label": "Build report PDF", "type": "shell", "group": "build",
+      "command": "latexmk -pdf -interaction=nonstopmode main.tex", "options": { "cwd": "${workspaceFolder}/report" },
+      "problemMatcher": [] }
+  ]
+}

@@ -1,0 +1,10 @@
+# Exact versions used to produce results/ (Python 3.13.5, Debian 13, CPU-only PyTorch).
+# CPU wheel:  pip install torch==2.15.0 --index-url https://download.pytorch.org/whl/cpu
+torch==2.15.0
+gymnasium[box2d]==1.3.0
+Box2D==2.3.10
+numpy==2.3.5
+scipy==1.18.1
+matplotlib==3.11.2
+pygame-ce==2.5.8
+pytest==9.2.0

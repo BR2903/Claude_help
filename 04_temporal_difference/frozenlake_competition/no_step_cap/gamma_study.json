@@ -1,0 +1,182 @@
+[
+  {
+    "gamma": 0.995,
+    "mean": 0.8104999999999999,
+    "runs": [
+      {
+        "training": {
+          "seed": 8801,
+          "transitions": 30000,
+          "completed_episodes": 2001,
+          "successes": 247
+        },
+        "evaluation": {
+          "seed": 108801,
+          "total_reward": 0.827,
+          "episodes": 2000,
+          "successes": 1654,
+          "holes": 346,
+          "transitions": 98033,
+          "longest_episode": 520,
+          "truncations": 0
+        }
+      },
+      {
+        "training": {
+          "seed": 8802,
+          "transitions": 30000,
+          "completed_episodes": 2086,
+          "successes": 284
+        },
+        "evaluation": {
+          "seed": 108802,
+          "total_reward": 0.783,
+          "episodes": 2000,
+          "successes": 1566,
+          "holes": 434,
+          "transitions": 86585,
+          "longest_episode": 294,
+          "truncations": 0
+        }
+      },
+      {
+        "training": {
+          "seed": 8803,
+          "transitions": 30000,
+          "completed_episodes": 2009,
+          "successes": 247
+        },
+        "evaluation": {
+          "seed": 108803,
+          "total_reward": 0.8215,
+          "episodes": 2000,
+          "successes": 1643,
+          "holes": 357,
+          "transitions": 96340,
+          "longest_episode": 313,
+          "truncations": 0
+        }
+      }
+    ]
+  },
+  {
+    "gamma": 0.999,
+    "mean": 0.8098333333333333,
+    "runs": [
+      {
+        "training": {
+          "seed": 8801,
+          "transitions": 30000,
+          "completed_episodes": 2001,
+          "successes": 255
+        },
+        "evaluation": {
+          "seed": 108801,
+          "total_reward": 0.823,
+          "episodes": 2000,
+          "successes": 1646,
+          "holes": 354,
+          "transitions": 97504,
+          "longest_episode": 450,
+          "truncations": 0
+        }
+      },
+      {
+        "training": {
+          "seed": 8802,
+          "transitions": 30000,
+          "completed_episodes": 2096,
+          "successes": 274
+        },
+        "evaluation": {
+          "seed": 108802,
+          "total_reward": 0.785,
+          "episodes": 2000,
+          "successes": 1570,
+          "holes": 430,
+          "transitions": 86570,
+          "longest_episode": 310,
+          "truncations": 0
+        }
+      },
+      {
+        "training": {
+          "seed": 8803,
+          "transitions": 30000,
+          "completed_episodes": 1952,
+          "successes": 230
+        },
+        "evaluation": {
+          "seed": 108803,
+          "total_reward": 0.8215,
+          "episodes": 2000,
+          "successes": 1643,
+          "holes": 357,
+          "transitions": 96340,
+          "longest_episode": 313,
+          "truncations": 0
+        }
+      }
+    ]
+  },
+  {
+    "gamma": 1.0,
+    "mean": 0.8108333333333334,
+    "runs": [
+      {
+        "training": {
+          "seed": 8801,
+          "transitions": 30000,
+          "completed_episodes": 2023,
+          "successes": 263
+        },
+        "evaluation": {
+          "seed": 108801,
+          "total_reward": 0.823,
+          "episodes": 2000,
+          "successes": 1646,
+          "holes": 354,
+          "transitions": 97504,
+          "longest_episode": 450,
+          "truncations": 0
+        }
+      },
+      {
+        "training": {
+          "seed": 8802,
+          "transitions": 30000,
+          "completed_episodes": 2033,
+          "successes": 273
+        },
+        "evaluation": {
+          "seed": 108802,
+          "total_reward": 0.8285,
+          "episodes": 2000,
+          "successes": 1657,
+          "holes": 343,
+          "transitions": 95844,
+          "longest_episode": 310,
+          "truncations": 0
+        }
+      },
+      {
+        "training": {
+          "seed": 8803,
+          "transitions": 30000,
+          "completed_episodes": 2028,
+          "successes": 259
+        },
+        "evaluation": {
+          "seed": 108803,
+          "total_reward": 0.781,
+          "episodes": 2000,
+          "successes": 1562,
+          "holes": 438,
+          "transitions": 87859,
+          "longest_episode": 297,
+          "truncations": 0
+        }
+      }
+    ]
+  }
+]

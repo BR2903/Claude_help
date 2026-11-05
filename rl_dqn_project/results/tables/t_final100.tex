@@ -1,0 +1,33 @@
+\begin{table*}[t]
+\centering\small
+\caption{Final weights, 100 greedy episodes per seed on held-out start states. Mean $\pm$ 95\% t-CI over seeds of each seed's 100-episode mean; a seed passes when its own 100-episode mean reaches the official threshold.}
+\label{tab:t_final100}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lrrrrr}
+\toprule
+Env & Config & 100-ep mean (final weights) & Best seed & Seeds $\ge$ threshold & Threshold \\
+\midrule
+CartPole-v1 & dqn\_eps100k & 163.0 $\pm$ 88.5 & 471.0 & 0/10 & 475 \\
+CartPole-v1 & dqn\_eps25k & 270.7 $\pm$ 116.6 & 500.0 & 3/10 & 475 \\
+CartPole-v1 & dqn\_eps5k & 300.2 $\pm$ 153.5 & 500.0 & 5/10 & 475 \\
+CartPole-v1 & tabular\_angle\_coarse & 280.0 $\pm$ 69.6 & 500.0 & 1/10 & 475 \\
+CartPole-v1 & tabular\_angle\_fine\_center & 356.0 $\pm$ 87.9 & 498.4 & 3/10 & 475 \\
+CartPole-v1 & tabular\_bins10 & 384.6 $\pm$ 87.5 & 496.1 & 4/10 & 475 \\
+CartPole-v1 & tabular\_bins20 & 277.2 $\pm$ 102.0 & 498.9 & 2/10 & 475 \\
+CartPole-v1 & tabular\_bins6 & 393.7 $\pm$ 70.8 & 491.7 & 1/10 & 475 \\
+MountainCar-v0 & dqn & -188.4 $\pm$ 17.9 & -131.6 & 0/10 & -110 \\
+MountainCar-v0 & dqn\_long\_eps & -174.5 $\pm$ 29.7 & -99.9 & 1/10 & -110 \\
+MountainCar-v0 & tabular\_optimistic & -174.2 $\pm$ 11.4 & -151.4 & 0/10 & -110 \\
+MountainCar-v0 & tabular\_pessimistic & -200.0 $\pm$ 0.0 & -200.0 & 0/10 & -110 \\
+LunarLander-v3 & double & 233.8 $\pm$ 34.7 & 273.2 & 8/10 & 200 \\
+LunarLander-v3 & dueling & 212.0 $\pm$ 43.4 & 274.7 & 7/10 & 200 \\
+LunarLander-v3 & full & 226.9 $\pm$ 34.3 & 272.9 & 7/10 & 200 \\
+LunarLander-v3 & lr\_0.0001 & 116.7 $\pm$ 140.5 & 257.8 & 1/5 & 200 \\
+LunarLander-v3 & lr\_0.002 & 231.7 $\pm$ 48.1 & 265.9 & 4/5 & 200 \\
+LunarLander-v3 & no\_replay & -442.2 $\pm$ 303.1 & -125.9 & 0/10 & 200 \\
+LunarLander-v3 & no\_target & 188.2 $\pm$ 69.6 & 281.4 & 6/10 & 200 \\
+LunarLander-v3 & target\_update\_freq\_250 & 193.6 $\pm$ 118.4 & 271.2 & 3/5 & 200 \\
+LunarLander-v3 & target\_update\_freq\_4000 & 240.5 $\pm$ 22.2 & 256.7 & 5/5 & 200 \\
+\bottomrule
+\end{tabular}}
+\end{table*}

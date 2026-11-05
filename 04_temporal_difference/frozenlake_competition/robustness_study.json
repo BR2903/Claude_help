@@ -1,0 +1,1451 @@
+{
+  "screen_seeds": [
+    5501,
+    5502,
+    5503
+  ],
+  "confirm_seeds": [
+    6601,
+    6602,
+    6603,
+    6604,
+    6605
+  ],
+  "design": "Nine Q settings on 3 fresh paired seeds with 1000 tests; compare top two plus incumbent and best earlier SARSA/MC on 5 fresh paired seeds with 2000 tests. Pick highest confirmation mean, incumbent on exact tie. No official seeds.",
+  "candidates": [
+    {
+      "name": "incumbent",
+      "config": {
+        "method": "qlearning",
+        "gamma": 0.995,
+        "alpha": 0.25,
+        "alpha_scale": 50,
+        "alpha_power": 0.6,
+        "epsilon_start": 1.0,
+        "epsilon_end": 0.05,
+        "decay_fraction": 0.8,
+        "initial_q": 0.0
+      },
+      "screen": {
+        "runs": [
+          {
+            "training": {
+              "seed": 5501,
+              "transitions": 30000,
+              "completed_episodes": 2077,
+              "successes": 248,
+              "seconds": 0.7437156999949366
+            },
+            "evaluation": {
+              "seed": 105501,
+              "total_reward": 0.744,
+              "episodes": 1000,
+              "successes": 744,
+              "holes": 157,
+              "truncations": 99,
+              "transitions": 45476,
+              "seconds": 0.3539147000119556
+            }
+          },
+          {
+            "training": {
+              "seed": 5502,
+              "transitions": 30000,
+              "completed_episodes": 2035,
+              "successes": 239,
+              "seconds": 0.7304356999957236
+            },
+            "evaluation": {
+              "seed": 105502,
+              "total_reward": 0.726,
+              "episodes": 1000,
+              "successes": 726,
+              "holes": 162,
+              "truncations": 112,
+              "transitions": 44426,
+              "seconds": 0.3542974000010872
+            }
+          },
+          {
+            "training": {
+              "seed": 5503,
+              "transitions": 30000,
+              "completed_episodes": 2083,
+              "successes": 235,
+              "seconds": 0.7049466999887954
+            },
+            "evaluation": {
+              "seed": 105503,
+              "total_reward": 0.722,
+              "episodes": 1000,
+              "successes": 722,
+              "holes": 166,
+              "truncations": 112,
+              "transitions": 44689,
+              "seconds": 0.377607899994473
+            }
+          }
+        ],
+        "summary": {
+          "mean": 0.7306666666666667,
+          "std": 0.01171893055416464,
+          "minimum": 0.722,
+          "maximum": 0.744,
+          "mean_training_seconds": 0.7263660333264852
+        }
+      },
+      "confirmation": {
+        "runs": [
+          {
+            "training": {
+              "seed": 6601,
+              "transitions": 30000,
+              "completed_episodes": 2113,
+              "successes": 266,
+              "seconds": 0.688516800000798
+            },
+            "evaluation": {
+              "seed": 106601,
+              "total_reward": 0.72,
+              "episodes": 2000,
+              "successes": 1440,
+              "holes": 344,
+              "truncations": 216,
+              "transitions": 91016,
+              "seconds": 0.6942427000030875
+            }
+          },
+          {
+            "training": {
+              "seed": 6602,
+              "transitions": 30000,
+              "completed_episodes": 2121,
+              "successes": 252,
+              "seconds": 0.6616513000044506
+            },
+            "evaluation": {
+              "seed": 106602,
+              "total_reward": 0.75,
+              "episodes": 2000,
+              "successes": 1500,
+              "holes": 379,
+              "truncations": 121,
+              "transitions": 81134,
+              "seconds": 0.6200956999964546
+            }
+          },
+          {
+            "training": {
+              "seed": 6603,
+              "transitions": 30000,
+              "completed_episodes": 2141,
+              "successes": 237,
+              "seconds": 0.6741369000083068
+            },
+            "evaluation": {
+              "seed": 106603,
+              "total_reward": 0.7395,
+              "episodes": 2000,
+              "successes": 1479,
+              "holes": 388,
+              "truncations": 133,
+              "transitions": 83394,
+              "seconds": 0.6540085000015097
+            }
+          },
+          {
+            "training": {
+              "seed": 6604,
+              "transitions": 30000,
+              "completed_episodes": 2149,
+              "successes": 249,
+              "seconds": 0.6838968999945791
+            },
+            "evaluation": {
+              "seed": 106604,
+              "total_reward": 0.7355,
+              "episodes": 2000,
+              "successes": 1471,
+              "holes": 406,
+              "truncations": 123,
+              "transitions": 80103,
+              "seconds": 0.6650225000048522
+            }
+          },
+          {
+            "training": {
+              "seed": 6605,
+              "transitions": 30000,
+              "completed_episodes": 2248,
+              "successes": 257,
+              "seconds": 0.7519877000013366
+            },
+            "evaluation": {
+              "seed": 106605,
+              "total_reward": 0.735,
+              "episodes": 2000,
+              "successes": 1470,
+              "holes": 396,
+              "truncations": 134,
+              "transitions": 82585,
+              "seconds": 0.7008071999880485
+            }
+          }
+        ],
+        "summary": {
+          "mean": 0.736,
+          "std": 0.010787724505195722,
+          "minimum": 0.72,
+          "maximum": 0.75,
+          "mean_training_seconds": 0.6920379200018942
+        }
+      }
+    },
+    {
+      "name": "alpha_01",
+      "config": {
+        "method": "qlearning",
+        "gamma": 0.995,
+        "alpha": 0.1,
+        "alpha_scale": 50,
+        "alpha_power": 0.6,
+        "epsilon_start": 1.0,
+        "epsilon_end": 0.05,
+        "decay_fraction": 0.8,
+        "initial_q": 0.0
+      },
+      "screen": {
+        "runs": [
+          {
+            "training": {
+              "seed": 5501,
+              "transitions": 30000,
+              "completed_episodes": 2248,
+              "successes": 239,
+              "seconds": 0.6882582000107504
+            },
+            "evaluation": {
+              "seed": 105501,
+              "total_reward": 0.725,
+              "episodes": 1000,
+              "successes": 725,
+              "holes": 207,
+              "truncations": 68,
+              "transitions": 42465,
+              "seconds": 0.34382959999493323
+            }
+          },
+          {
+            "training": {
+              "seed": 5502,
+              "transitions": 30000,
+              "completed_episodes": 2162,
+              "successes": 245,
+              "seconds": 0.6979417000111425
+            },
+            "evaluation": {
+              "seed": 105502,
+              "total_reward": 0.735,
+              "episodes": 1000,
+              "successes": 735,
+              "holes": 188,
+              "truncations": 77,
+              "transitions": 41443,
+              "seconds": 0.3192592999985209
+            }
+          },
+          {
+            "training": {
+              "seed": 5503,
+              "transitions": 30000,
+              "completed_episodes": 2150,
+              "successes": 270,
+              "seconds": 0.6768813999951817
+            },
+            "evaluation": {
+              "seed": 105503,
+              "total_reward": 0.702,
+              "episodes": 1000,
+              "successes": 702,
+              "holes": 242,
+              "truncations": 56,
+              "transitions": 40430,
+              "seconds": 0.31512290000682697
+            }
+          }
+        ],
+        "summary": {
+          "mean": 0.7206666666666667,
+          "std": 0.01692138686199609,
+          "minimum": 0.702,
+          "maximum": 0.735,
+          "mean_training_seconds": 0.6876937666723583
+        }
+      }
+    },
+    {
+      "name": "alpha_015",
+      "config": {
+        "method": "qlearning",
+        "gamma": 0.995,
+        "alpha": 0.15,
+        "alpha_scale": 50,
+        "alpha_power": 0.6,
+        "epsilon_start": 1.0,
+        "epsilon_end": 0.05,
+        "decay_fraction": 0.8,
+        "initial_q": 0.0
+      },
+      "screen": {
+        "runs": [
+          {
+            "training": {
+              "seed": 5501,
+              "transitions": 30000,
+              "completed_episodes": 2172,
+              "successes": 263,
+              "seconds": 0.6615867000073195
+            },
+            "evaluation": {
+              "seed": 105501,
+              "total_reward": 0.669,
+              "episodes": 1000,
+              "successes": 669,
+              "holes": 295,
+              "truncations": 36,
+              "transitions": 38304,
+              "seconds": 0.29627310000068974
+            }
+          },
+          {
+            "training": {
+              "seed": 5502,
+              "transitions": 30000,
+              "completed_episodes": 2142,
+              "successes": 251,
+              "seconds": 0.7290575999941211
+            },
+            "evaluation": {
+              "seed": 105502,
+              "total_reward": 0.735,
+              "episodes": 1000,
+              "successes": 735,
+              "holes": 188,
+              "truncations": 77,
+              "transitions": 41443,
+              "seconds": 0.33246890000009444
+            }
+          },
+          {
+            "training": {
+              "seed": 5503,
+              "transitions": 30000,
+              "completed_episodes": 2109,
+              "successes": 259,
+              "seconds": 0.736475400000927
+            },
+            "evaluation": {
+              "seed": 105503,
+              "total_reward": 0.703,
+              "episodes": 1000,
+              "successes": 703,
+              "holes": 226,
+              "truncations": 71,
+              "transitions": 41638,
+              "seconds": 0.3378499999962514
+            }
+          }
+        ],
+        "summary": {
+          "mean": 0.7023333333333333,
+          "std": 0.03300505011863081,
+          "minimum": 0.669,
+          "maximum": 0.735,
+          "mean_training_seconds": 0.7090399000007892
+        }
+      }
+    },
+    {
+      "name": "constant_005",
+      "config": {
+        "method": "qlearning",
+        "gamma": 0.995,
+        "alpha": 0.05,
+        "alpha_scale": 50,
+        "alpha_power": 0.0,
+        "epsilon_start": 1.0,
+        "epsilon_end": 0.05,
+        "decay_fraction": 0.8,
+        "initial_q": 0.0
+      },
+      "screen": {
+        "runs": [
+          {
+            "training": {
+              "seed": 5501,
+              "transitions": 30000,
+              "completed_episodes": 2248,
+              "successes": 248,
+              "seconds": 0.7301349999906961
+            },
+            "evaluation": {
+              "seed": 105501,
+              "total_reward": 0.731,
+              "episodes": 1000,
+              "successes": 731,
+              "holes": 203,
+              "truncations": 66,
+              "transitions": 41647,
+              "seconds": 0.35108570000738837
+            }
+          },
+          {
+            "training": {
+              "seed": 5502,
+              "transitions": 30000,
+              "completed_episodes": 2175,
+              "successes": 249,
+              "seconds": 0.7737447000108659
+            },
+            "evaluation": {
+              "seed": 105502,
+              "total_reward": 0.711,
+              "episodes": 1000,
+              "successes": 711,
+              "holes": 215,
+              "truncations": 74,
+              "transitions": 41362,
+              "seconds": 0.320558000006713
+            }
+          },
+          {
+            "training": {
+              "seed": 5503,
+              "transitions": 30000,
+              "completed_episodes": 2331,
+              "successes": 232,
+              "seconds": 0.6916978000081144
+            },
+            "evaluation": {
+              "seed": 105503,
+              "total_reward": 0.709,
+              "episodes": 1000,
+              "successes": 709,
+              "holes": 221,
+              "truncations": 70,
+              "transitions": 41705,
+              "seconds": 0.3234958999964874
+            }
+          }
+        ],
+        "summary": {
+          "mean": 0.717,
+          "std": 0.01216552506059645,
+          "minimum": 0.709,
+          "maximum": 0.731,
+          "mean_training_seconds": 0.7318591666698921
+        }
+      }
+    },
+    {
+      "name": "optimistic_01",
+      "config": {
+        "method": "qlearning",
+        "gamma": 0.995,
+        "alpha": 0.25,
+        "alpha_scale": 50,
+        "alpha_power": 0.6,
+        "epsilon_start": 1.0,
+        "epsilon_end": 0.05,
+        "decay_fraction": 0.8,
+        "initial_q": 0.1
+      },
+      "screen": {
+        "runs": [
+          {
+            "training": {
+              "seed": 5501,
+              "transitions": 30000,
+              "completed_episodes": 2045,
+              "successes": 232,
+              "seconds": 0.70495280000614
+            },
+            "evaluation": {
+              "seed": 105501,
+              "total_reward": 0.744,
+              "episodes": 1000,
+              "successes": 744,
+              "holes": 157,
+              "truncations": 99,
+              "transitions": 45476,
+              "seconds": 0.3537298000010196
+            }
+          },
+          {
+            "training": {
+              "seed": 5502,
+              "transitions": 30000,
+              "completed_episodes": 2060,
+              "successes": 222,
+              "seconds": 0.6806196999968961
+            },
+            "evaluation": {
+              "seed": 105502,
+              "total_reward": 0.735,
+              "episodes": 1000,
+              "successes": 735,
+              "holes": 188,
+              "truncations": 77,
+              "transitions": 41443,
+              "seconds": 0.3162548000109382
+            }
+          },
+          {
+            "training": {
+              "seed": 5503,
+              "transitions": 30000,
+              "completed_episodes": 2029,
+              "successes": 226,
+              "seconds": 0.6680900999926962
+            },
+            "evaluation": {
+              "seed": 105503,
+              "total_reward": 0.722,
+              "episodes": 1000,
+              "successes": 722,
+              "holes": 166,
+              "truncations": 112,
+              "transitions": 44689,
+              "seconds": 0.34893059999740217
+            }
+          }
+        ],
+        "summary": {
+          "mean": 0.7336666666666667,
+          "std": 0.01106044001535805,
+          "minimum": 0.722,
+          "maximum": 0.744,
+          "mean_training_seconds": 0.6845541999985775
+        }
+      }
+    },
+    {
+      "name": "optimistic_03",
+      "config": {
+        "method": "qlearning",
+        "gamma": 0.995,
+        "alpha": 0.25,
+        "alpha_scale": 50,
+        "alpha_power": 0.6,
+        "epsilon_start": 1.0,
+        "epsilon_end": 0.05,
+        "decay_fraction": 0.8,
+        "initial_q": 0.3
+      },
+      "screen": {
+        "runs": [
+          {
+            "training": {
+              "seed": 5501,
+              "transitions": 30000,
+              "completed_episodes": 2027,
+              "successes": 219,
+              "seconds": 0.6993654999969294
+            },
+            "evaluation": {
+              "seed": 105501,
+              "total_reward": 0.744,
+              "episodes": 1000,
+              "successes": 744,
+              "holes": 157,
+              "truncations": 99,
+              "transitions": 45476,
+              "seconds": 0.34222350000345614
+            }
+          },
+          {
+            "training": {
+              "seed": 5502,
+              "transitions": 30000,
+              "completed_episodes": 2108,
+              "successes": 215,
+              "seconds": 0.8804024999990361
+            },
+            "evaluation": {
+              "seed": 105502,
+              "total_reward": 0.742,
+              "episodes": 1000,
+              "successes": 742,
+              "holes": 146,
+              "truncations": 112,
+              "transitions": 44566,
+              "seconds": 0.3519783999945503
+            }
+          },
+          {
+            "training": {
+              "seed": 5503,
+              "transitions": 30000,
+              "completed_episodes": 2094,
+              "successes": 230,
+              "seconds": 0.7082104000000982
+            },
+            "evaluation": {
+              "seed": 105503,
+              "total_reward": 0.719,
+              "episodes": 1000,
+              "successes": 719,
+              "holes": 175,
+              "truncations": 106,
+              "transitions": 44425,
+              "seconds": 0.361733900004765
+            }
+          }
+        ],
+        "summary": {
+          "mean": 0.735,
+          "std": 0.013892443989449818,
+          "minimum": 0.719,
+          "maximum": 0.744,
+          "mean_training_seconds": 0.7626594666653546
+        }
+      },
+      "confirmation": {
+        "runs": [
+          {
+            "training": {
+              "seed": 6601,
+              "transitions": 30000,
+              "completed_episodes": 2115,
+              "successes": 259,
+              "seconds": 0.6882068999984767
+            },
+            "evaluation": {
+              "seed": 106601,
+              "total_reward": 0.72,
+              "episodes": 2000,
+              "successes": 1440,
+              "holes": 344,
+              "truncations": 216,
+              "transitions": 91016,
+              "seconds": 0.7111188000126276
+            }
+          },
+          {
+            "training": {
+              "seed": 6602,
+              "transitions": 30000,
+              "completed_episodes": 2056,
+              "successes": 207,
+              "seconds": 0.6896814000065206
+            },
+            "evaluation": {
+              "seed": 106602,
+              "total_reward": 0.7525,
+              "episodes": 2000,
+              "successes": 1505,
+              "holes": 304,
+              "truncations": 191,
+              "transitions": 87378,
+              "seconds": 0.7013513999991119
+            }
+          },
+          {
+            "training": {
+              "seed": 6603,
+              "transitions": 30000,
+              "completed_episodes": 2013,
+              "successes": 227,
+              "seconds": 0.6755918000126258
+            },
+            "evaluation": {
+              "seed": 106603,
+              "total_reward": 0.743,
+              "episodes": 2000,
+              "successes": 1486,
+              "holes": 305,
+              "truncations": 209,
+              "transitions": 90063,
+              "seconds": 0.6868040999979712
+            }
+          },
+          {
+            "training": {
+              "seed": 6604,
+              "transitions": 30000,
+              "completed_episodes": 2106,
+              "successes": 232,
+              "seconds": 0.6771577000035904
+            },
+            "evaluation": {
+              "seed": 106604,
+              "total_reward": 0.6715,
+              "episodes": 2000,
+              "successes": 1343,
+              "holes": 581,
+              "truncations": 76,
+              "transitions": 73945,
+              "seconds": 0.5660222000005888
+            }
+          },
+          {
+            "training": {
+              "seed": 6605,
+              "transitions": 30000,
+              "completed_episodes": 2012,
+              "successes": 218,
+              "seconds": 0.679058099995018
+            },
+            "evaluation": {
+              "seed": 106605,
+              "total_reward": 0.7405,
+              "episodes": 2000,
+              "successes": 1481,
+              "holes": 317,
+              "truncations": 202,
+              "transitions": 88410,
+              "seconds": 0.7095264000090538
+            }
+          }
+        ],
+        "summary": {
+          "mean": 0.7255,
+          "std": 0.032428768092544004,
+          "minimum": 0.6715,
+          "maximum": 0.7525,
+          "mean_training_seconds": 0.6819391800032463
+        }
+      }
+    },
+    {
+      "name": "epsilon_end_001",
+      "config": {
+        "method": "qlearning",
+        "gamma": 0.995,
+        "alpha": 0.25,
+        "alpha_scale": 50,
+        "alpha_power": 0.6,
+        "epsilon_start": 1.0,
+        "epsilon_end": 0.01,
+        "decay_fraction": 0.8,
+        "initial_q": 0.0
+      },
+      "screen": {
+        "runs": [
+          {
+            "training": {
+              "seed": 5501,
+              "transitions": 30000,
+              "completed_episodes": 2000,
+              "successes": 247,
+              "seconds": 0.7280821000022115
+            },
+            "evaluation": {
+              "seed": 105501,
+              "total_reward": 0.747,
+              "episodes": 1000,
+              "successes": 747,
+              "holes": 153,
+              "truncations": 100,
+              "transitions": 46014,
+              "seconds": 0.3647952000028454
+            }
+          },
+          {
+            "training": {
+              "seed": 5502,
+              "transitions": 30000,
+              "completed_episodes": 2015,
+              "successes": 240,
+              "seconds": 0.7083880999998655
+            },
+            "evaluation": {
+              "seed": 105502,
+              "total_reward": 0.742,
+              "episodes": 1000,
+              "successes": 742,
+              "holes": 146,
+              "truncations": 112,
+              "transitions": 44566,
+              "seconds": 0.34303030000592116
+            }
+          },
+          {
+            "training": {
+              "seed": 5503,
+              "transitions": 30000,
+              "completed_episodes": 2004,
+              "successes": 254,
+              "seconds": 0.6773423999984516
+            },
+            "evaluation": {
+              "seed": 105503,
+              "total_reward": 0.719,
+              "episodes": 1000,
+              "successes": 719,
+              "holes": 175,
+              "truncations": 106,
+              "transitions": 44425,
+              "seconds": 0.3408114000048954
+            }
+          }
+        ],
+        "summary": {
+          "mean": 0.7359999999999999,
+          "std": 0.014933184523068091,
+          "minimum": 0.719,
+          "maximum": 0.747,
+          "mean_training_seconds": 0.7046042000001762
+        }
+      },
+      "confirmation": {
+        "runs": [
+          {
+            "training": {
+              "seed": 6601,
+              "transitions": 30000,
+              "completed_episodes": 2064,
+              "successes": 274,
+              "seconds": 0.7003234000003431
+            },
+            "evaluation": {
+              "seed": 106601,
+              "total_reward": 0.72,
+              "episodes": 2000,
+              "successes": 1440,
+              "holes": 344,
+              "truncations": 216,
+              "transitions": 91016,
+              "seconds": 0.797252500007744
+            }
+          },
+          {
+            "training": {
+              "seed": 6602,
+              "transitions": 30000,
+              "completed_episodes": 2018,
+              "successes": 260,
+              "seconds": 0.9158432000112953
+            },
+            "evaluation": {
+              "seed": 106602,
+              "total_reward": 0.7525,
+              "episodes": 2000,
+              "successes": 1505,
+              "holes": 299,
+              "truncations": 196,
+              "transitions": 87763,
+              "seconds": 0.7296576999942772
+            }
+          },
+          {
+            "training": {
+              "seed": 6603,
+              "transitions": 30000,
+              "completed_episodes": 2005,
+              "successes": 230,
+              "seconds": 1.005942200004938
+            },
+            "evaluation": {
+              "seed": 106603,
+              "total_reward": 0.746,
+              "episodes": 2000,
+              "successes": 1492,
+              "holes": 304,
+              "truncations": 204,
+              "transitions": 89032,
+              "seconds": 1.165470899999491
+            }
+          },
+          {
+            "training": {
+              "seed": 6604,
+              "transitions": 30000,
+              "completed_episodes": 1980,
+              "successes": 277,
+              "seconds": 0.7907784999988507
+            },
+            "evaluation": {
+              "seed": 106604,
+              "total_reward": 0.7505,
+              "episodes": 2000,
+              "successes": 1501,
+              "holes": 329,
+              "truncations": 170,
+              "transitions": 85439,
+              "seconds": 0.6796297999972012
+            }
+          },
+          {
+            "training": {
+              "seed": 6605,
+              "transitions": 30000,
+              "completed_episodes": 2123,
+              "successes": 257,
+              "seconds": 0.6951240000053076
+            },
+            "evaluation": {
+              "seed": 106605,
+              "total_reward": 0.741,
+              "episodes": 2000,
+              "successes": 1482,
+              "holes": 314,
+              "truncations": 204,
+              "transitions": 87927,
+              "seconds": 0.8007380000053672
+            }
+          }
+        ],
+        "summary": {
+          "mean": 0.7419999999999999,
+          "std": 0.013071916462401363,
+          "minimum": 0.72,
+          "maximum": 0.7525,
+          "mean_training_seconds": 0.8216022600041469
+        }
+      }
+    },
+    {
+      "name": "epsilon_decay_05",
+      "config": {
+        "method": "qlearning",
+        "gamma": 0.995,
+        "alpha": 0.25,
+        "alpha_scale": 50,
+        "alpha_power": 0.6,
+        "epsilon_start": 1.0,
+        "epsilon_end": 0.05,
+        "decay_fraction": 0.5,
+        "initial_q": 0.0
+      },
+      "screen": {
+        "runs": [
+          {
+            "training": {
+              "seed": 5501,
+              "transitions": 30000,
+              "completed_episodes": 1680,
+              "successes": 318,
+              "seconds": 0.7010157999902731
+            },
+            "evaluation": {
+              "seed": 105501,
+              "total_reward": 0.747,
+              "episodes": 1000,
+              "successes": 747,
+              "holes": 153,
+              "truncations": 100,
+              "transitions": 46014,
+              "seconds": 0.3614468999876408
+            }
+          },
+          {
+            "training": {
+              "seed": 5502,
+              "transitions": 30000,
+              "completed_episodes": 1671,
+              "successes": 334,
+              "seconds": 0.6917112999944948
+            },
+            "evaluation": {
+              "seed": 105502,
+              "total_reward": 0.711,
+              "episodes": 1000,
+              "successes": 711,
+              "holes": 215,
+              "truncations": 74,
+              "transitions": 41362,
+              "seconds": 0.31583279999904335
+            }
+          },
+          {
+            "training": {
+              "seed": 5503,
+              "transitions": 30000,
+              "completed_episodes": 1690,
+              "successes": 293,
+              "seconds": 0.7342482999956701
+            },
+            "evaluation": {
+              "seed": 105503,
+              "total_reward": 0.722,
+              "episodes": 1000,
+              "successes": 722,
+              "holes": 166,
+              "truncations": 112,
+              "transitions": 44689,
+              "seconds": 0.34348290000343695
+            }
+          }
+        ],
+        "summary": {
+          "mean": 0.7266666666666666,
+          "std": 0.0184481254693623,
+          "minimum": 0.711,
+          "maximum": 0.747,
+          "mean_training_seconds": 0.7089917999934793
+        }
+      }
+    },
+    {
+      "name": "gamma_1_slow",
+      "config": {
+        "method": "qlearning",
+        "gamma": 1.0,
+        "alpha": 0.25,
+        "alpha_scale": 50,
+        "alpha_power": 0.6,
+        "epsilon_start": 1.0,
+        "epsilon_end": 0.05,
+        "decay_fraction": 0.8,
+        "initial_q": 0.0
+      },
+      "screen": {
+        "runs": [
+          {
+            "training": {
+              "seed": 5501,
+              "transitions": 30000,
+              "completed_episodes": 2088,
+              "successes": 246,
+              "seconds": 0.6729464000090957
+            },
+            "evaluation": {
+              "seed": 105501,
+              "total_reward": 0.747,
+              "episodes": 1000,
+              "successes": 747,
+              "holes": 153,
+              "truncations": 100,
+              "transitions": 46014,
+              "seconds": 0.3677161999949021
+            }
+          },
+          {
+            "training": {
+              "seed": 5502,
+              "transitions": 30000,
+              "completed_episodes": 2035,
+              "successes": 241,
+              "seconds": 0.6838887000048999
+            },
+            "evaluation": {
+              "seed": 105502,
+              "total_reward": 0.726,
+              "episodes": 1000,
+              "successes": 726,
+              "holes": 162,
+              "truncations": 112,
+              "transitions": 44426,
+              "seconds": 0.33202970000274945
+            }
+          },
+          {
+            "training": {
+              "seed": 5503,
+              "transitions": 30000,
+              "completed_episodes": 2083,
+              "successes": 250,
+              "seconds": 0.6785296999878483
+            },
+            "evaluation": {
+              "seed": 105503,
+              "total_reward": 0.722,
+              "episodes": 1000,
+              "successes": 722,
+              "holes": 166,
+              "truncations": 112,
+              "transitions": 44689,
+              "seconds": 0.3415882999979658
+            }
+          }
+        ],
+        "summary": {
+          "mean": 0.7316666666666666,
+          "std": 0.013428824718989136,
+          "minimum": 0.722,
+          "maximum": 0.747,
+          "mean_training_seconds": 0.6784549333339479
+        }
+      }
+    },
+    {
+      "name": "sarsa_995",
+      "config": {
+        "method": "sarsa",
+        "gamma": 0.995,
+        "alpha": 0.5,
+        "alpha_scale": 50,
+        "alpha_power": 0.6,
+        "epsilon_start": 1.0,
+        "epsilon_end": 0.0,
+        "decay_fraction": 0.7,
+        "initial_q": 0.0
+      },
+      "prior_screen": {
+        "runs": [
+          {
+            "training": {
+              "seed": 3301,
+              "transitions": 30000,
+              "completed_episodes": 2084,
+              "successes": 302,
+              "seconds": 0.6179302999953507
+            },
+            "evaluation": {
+              "seed": 103301,
+              "total_reward": 0.726,
+              "episodes": 1000,
+              "successes": 726,
+              "holes": 210,
+              "truncations": 64,
+              "transitions": 42080,
+              "seconds": 0.32152209999912884
+            }
+          },
+          {
+            "training": {
+              "seed": 3302,
+              "transitions": 30000,
+              "completed_episodes": 2036,
+              "successes": 283,
+              "seconds": 0.6411837000050582
+            },
+            "evaluation": {
+              "seed": 103302,
+              "total_reward": 0.724,
+              "episodes": 1000,
+              "successes": 724,
+              "holes": 207,
+              "truncations": 69,
+              "transitions": 41518,
+              "seconds": 0.3250583000044571
+            }
+          },
+          {
+            "training": {
+              "seed": 3303,
+              "transitions": 30000,
+              "completed_episodes": 2049,
+              "successes": 269,
+              "seconds": 0.5898404000035953
+            },
+            "evaluation": {
+              "seed": 103303,
+              "total_reward": 0.724,
+              "episodes": 1000,
+              "successes": 724,
+              "holes": 196,
+              "truncations": 80,
+              "transitions": 42484,
+              "seconds": 0.32505360001232475
+            }
+          }
+        ],
+        "summary": {
+          "mean": 0.7246666666666667,
+          "std": 0.0011547005383792527,
+          "minimum": 0.724,
+          "maximum": 0.726,
+          "mean_training_seconds": 0.616318133334668
+        }
+      },
+      "confirmation": {
+        "runs": [
+          {
+            "training": {
+              "seed": 6601,
+              "transitions": 30000,
+              "completed_episodes": 2106,
+              "successes": 279,
+              "seconds": 0.6353696000005584
+            },
+            "evaluation": {
+              "seed": 106601,
+              "total_reward": 0.7145,
+              "episodes": 2000,
+              "successes": 1429,
+              "holes": 430,
+              "truncations": 141,
+              "transitions": 83223,
+              "seconds": 0.6362267000076827
+            }
+          },
+          {
+            "training": {
+              "seed": 6602,
+              "transitions": 30000,
+              "completed_episodes": 2039,
+              "successes": 270,
+              "seconds": 0.603015200002119
+            },
+            "evaluation": {
+              "seed": 106602,
+              "total_reward": 0.749,
+              "episodes": 2000,
+              "successes": 1498,
+              "holes": 387,
+              "truncations": 115,
+              "transitions": 81272,
+              "seconds": 0.6433288999978686
+            }
+          },
+          {
+            "training": {
+              "seed": 6603,
+              "transitions": 30000,
+              "completed_episodes": 2010,
+              "successes": 241,
+              "seconds": 0.6049045999970986
+            },
+            "evaluation": {
+              "seed": 106603,
+              "total_reward": 0.643,
+              "episodes": 2000,
+              "successes": 1286,
+              "holes": 578,
+              "truncations": 136,
+              "transitions": 82408,
+              "seconds": 0.6584449999936623
+            }
+          },
+          {
+            "training": {
+              "seed": 6604,
+              "transitions": 30000,
+              "completed_episodes": 2047,
+              "successes": 294,
+              "seconds": 0.594891299988376
+            },
+            "evaluation": {
+              "seed": 106604,
+              "total_reward": 0.7315,
+              "episodes": 2000,
+              "successes": 1463,
+              "holes": 421,
+              "truncations": 116,
+              "transitions": 79635,
+              "seconds": 0.6423919999942882
+            }
+          },
+          {
+            "training": {
+              "seed": 6605,
+              "transitions": 30000,
+              "completed_episodes": 2028,
+              "successes": 291,
+              "seconds": 0.5981497000029776
+            },
+            "evaluation": {
+              "seed": 106605,
+              "total_reward": 0.7305,
+              "episodes": 2000,
+              "successes": 1461,
+              "holes": 403,
+              "truncations": 136,
+              "transitions": 83217,
+              "seconds": 0.6580111000075703
+            }
+          }
+        ],
+        "summary": {
+          "mean": 0.7137,
+          "std": 0.041365142330227755,
+          "minimum": 0.643,
+          "maximum": 0.749,
+          "mean_training_seconds": 0.6072660799982259
+        }
+      }
+    },
+    {
+      "name": "mc_1_constant",
+      "config": {
+        "method": "mc",
+        "gamma": 1.0,
+        "alpha": 0.5,
+        "alpha_scale": 50,
+        "alpha_power": 0.6,
+        "epsilon_start": 0.3,
+        "epsilon_end": 0.01,
+        "decay_fraction": 0.8,
+        "initial_q": 0.0,
+        "mc_rate": 0.02
+      },
+      "prior_screen": {
+        "runs": [
+          {
+            "training": {
+              "seed": 3301,
+              "transitions": 806043,
+              "completed_episodes": 30000,
+              "successes": 10987,
+              "seconds": 16.17042309998942
+            },
+            "evaluation": {
+              "seed": 103301,
+              "total_reward": 0.738,
+              "episodes": 1000,
+              "successes": 738,
+              "holes": 163,
+              "truncations": 99,
+              "transitions": 44756,
+              "seconds": 0.36305800000263844
+            }
+          },
+          {
+            "training": {
+              "seed": 3302,
+              "transitions": 788915,
+              "completed_episodes": 30000,
+              "successes": 10074,
+              "seconds": 16.563522500000545
+            },
+            "evaluation": {
+              "seed": 103302,
+              "total_reward": 0.739,
+              "episodes": 1000,
+              "successes": 739,
+              "holes": 158,
+              "truncations": 103,
+              "transitions": 43934,
+              "seconds": 0.6088576000038302
+            }
+          },
+          {
+            "training": {
+              "seed": 3303,
+              "transitions": 755992,
+              "completed_episodes": 30000,
+              "successes": 10497,
+              "seconds": 24.311934900004417
+            },
+            "evaluation": {
+              "seed": 103303,
+              "total_reward": 0.707,
+              "episodes": 1000,
+              "successes": 707,
+              "holes": 211,
+              "truncations": 82,
+              "transitions": 42775,
+              "seconds": 0.6585551999887684
+            }
+          }
+        ],
+        "summary": {
+          "mean": 0.7279999999999999,
+          "std": 0.018193405398660267,
+          "minimum": 0.707,
+          "maximum": 0.739,
+          "mean_training_seconds": 19.015293499998126
+        }
+      },
+      "confirmation": {
+        "runs": [
+          {
+            "training": {
+              "seed": 6601,
+              "transitions": 771287,
+              "completed_episodes": 30000,
+              "successes": 10768,
+              "seconds": 15.37197739999101
+            },
+            "evaluation": {
+              "seed": 106601,
+              "total_reward": 0.7145,
+              "episodes": 2000,
+              "successes": 1429,
+              "holes": 430,
+              "truncations": 141,
+              "transitions": 83223,
+              "seconds": 0.650028599993675
+            }
+          },
+          {
+            "training": {
+              "seed": 6602,
+              "transitions": 760532,
+              "completed_episodes": 30000,
+              "successes": 10567,
+              "seconds": 14.745301699993433
+            },
+            "evaluation": {
+              "seed": 106602,
+              "total_reward": 0.731,
+              "episodes": 2000,
+              "successes": 1462,
+              "holes": 441,
+              "truncations": 97,
+              "transitions": 79417,
+              "seconds": 0.6239920000080019
+            }
+          },
+          {
+            "training": {
+              "seed": 6603,
+              "transitions": 747101,
+              "completed_episodes": 30000,
+              "successes": 10347,
+              "seconds": 14.884601700003259
+            },
+            "evaluation": {
+              "seed": 106603,
+              "total_reward": 0.7395,
+              "episodes": 2000,
+              "successes": 1479,
+              "holes": 388,
+              "truncations": 133,
+              "transitions": 83394,
+              "seconds": 0.6425105999951484
+            }
+          },
+          {
+            "training": {
+              "seed": 6604,
+              "transitions": 766357,
+              "completed_episodes": 30000,
+              "successes": 10740,
+              "seconds": 14.982420699991053
+            },
+            "evaluation": {
+              "seed": 106604,
+              "total_reward": 0.7315,
+              "episodes": 2000,
+              "successes": 1463,
+              "holes": 421,
+              "truncations": 116,
+              "transitions": 79635,
+              "seconds": 0.6165703999868128
+            }
+          },
+          {
+            "training": {
+              "seed": 6605,
+              "transitions": 758644,
+              "completed_episodes": 30000,
+              "successes": 10726,
+              "seconds": 20.117468199998257
+            },
+            "evaluation": {
+              "seed": 106605,
+              "total_reward": 0.735,
+              "episodes": 2000,
+              "successes": 1470,
+              "holes": 396,
+              "truncations": 134,
+              "transitions": 82585,
+              "seconds": 0.9562882999889553
+            }
+          }
+        ],
+        "summary": {
+          "mean": 0.7303,
+          "std": 0.009464407007309017,
+          "minimum": 0.7145,
+          "maximum": 0.7395,
+          "mean_training_seconds": 16.020353939995402
+        }
+      }
+    }
+  ],
+  "selected": "epsilon_end_001"
+}

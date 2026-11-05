@@ -1,0 +1,28 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Unused leftovers kept locally only (old vendored matplotlib, now installed in .venv)
+_archive/
+
+# LaTeX build files
+*.aux
+*.log
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.nav
+*.snm
+*.bbl
+*.blg
+
+# rl_dqn_project smoke-test output (python experiments/*.py --quick)
+rl_dqn_project/results/quick/
+rl_dqn_project/results/*_quick/
+
+# in-flight result files written by rl_dqn_project/common/runner.py
+*.tmp

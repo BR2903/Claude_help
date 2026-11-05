@@ -1,0 +1,9 @@
+{
+  "ten_rows": true,
+  "correct_columns": true,
+  "exact_training_replay": true,
+  "exact_evaluation_replay": true,
+  "frozen_q": true,
+  "budget_respected": true,
+  "within_120_seconds": true
+}

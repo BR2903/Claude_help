@@ -1,0 +1,838 @@
+% =====================================================================
+%  Guía desde cero: los 14 ejercicios resueltos, explicados paso a paso
+%  Compilar en Overleaf con pdfLaTeX.
+% =====================================================================
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[spanish,es-noshorthands]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage[margin=2.3cm]{geometry}
+\usepackage{enumitem}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+
+\hypersetup{colorlinks=true,linkcolor=blue!50!black,urlcolor=blue!50!black}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.6em}
+\renewcommand{\arraystretch}{1.25}
+
+\newtcolorbox{idea}{colback=blue!5,colframe=blue!55!black,fonttitle=\bfseries,title={Idea que necesitas},breakable}
+\newtcolorbox{cuidado}{colback=red!5,colframe=red!60!black,fonttitle=\bfseries,title={Cuidado},breakable}
+\newtcolorbox{respuesta}{colback=yellow!10,colframe=orange!70!black,fonttitle=\bfseries,title={Respuesta final},breakable}
+\newtcolorbox{enunciado}{colback=gray!8,colframe=black!60,fonttitle=\bfseries,title={Enunciado},breakable}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\dom}{\operatorname{Dom}}
+\newcommand{\paso}[1]{\par\medskip\noindent\textbf{\textcolor{blue!50!black}{Paso #1.}}\ }
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Fundamentos de Matemáticas}
+\rhead{Guía desde cero}
+\cfoot{\thepage}
+
+\title{\textbf{Guía desde cero}\\[0.4em]
+\large Los 14 ejercicios de la guía de repaso, resueltos paso a paso\\
+para alguien que parte sin saber nada}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+\tableofcontents
+\newpage
+
+% =====================================================================
+\section*{Cómo leer esta guía}
+\addcontentsline{toc}{section}{Cómo leer esta guía}
+% =====================================================================
+Cada ejercicio tiene siempre la misma estructura:
+\begin{enumerate}[nosep]
+  \item \textbf{Enunciado}: lo que te piden.
+  \item \textbf{Idea que necesitas}: la herramienta matemática, explicada desde cero.
+  \item \textbf{Pasos}: cada cuenta escrita, sin saltarse nada.
+  \item \textbf{Verificación}: cómo comprobar que no te equivocaste.
+  \item \textbf{Respuesta final}.
+\end{enumerate}
+Si algo del lenguaje no se entiende, ve primero al capítulo~0 (las herramientas básicas).
+
+\newpage
+% =====================================================================
+\section{Capítulo 0: Herramientas básicas}
+% =====================================================================
+
+\subsection{Resolver una ecuación: la regla de la balanza}
+Una ecuación es una balanza equilibrada. Lo que hagas a un lado, hazlo al otro.
+\[ 3x+5=20\ \Rightarrow\ 3x=15\ \Rightarrow\ x=5. \]
+(Restamos $5$ a ambos lados; luego dividimos ambos lados entre $3$.)
+
+\subsection{Fracciones}
+\begin{itemize}[nosep]
+  \item Para sumar $\frac ab+\frac cd$ se busca un denominador común. Ejemplo: $-4+\frac{62}{25}=\frac{-100}{25}+\frac{62}{25}=\frac{-38}{25}$.
+  \item Dividir entre una fracción es multiplicar por su inversa.
+  \item Una fracción es cero solo si el \textbf{numerador} es cero. Una fracción \textbf{no existe} si el denominador es cero.
+\end{itemize}
+
+\subsection{Factorizar un polinomio de grado 2}
+Factorizar $x^2+bx+c$ es buscar dos números que \textbf{multipliquen} $c$ y \textbf{sumen} $b$.
+Ejemplo: $x^2-5x+4$: busco dos números que multipliquen $4$ y sumen $-5$: son $-1$ y $-4$.
+\[ x^2-5x+4=(x-1)(x-4). \]
+Una expresión como $(x-1)(x-4)=0$ vale cero cuando \textbf{alguno} de los factores vale cero: $x=1$ o $x=4$.
+
+\subsection{Diferencia de cuadrados}
+$a^2-b^2=(a-b)(a+b)$. Ejemplo: $x^2-4=(x-2)(x+2)$.
+
+\subsection{Valor absoluto}
+$|a|$ es la distancia de $a$ a cero, siempre positiva: $|-7|=7$.
+La ecuación $|u|=5$ tiene \textbf{dos} soluciones: $u=5$ o $u=-5$.
+
+\subsection{Intervalos}
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Se escribe} & \textbf{Significa} & \textbf{¿Incluye extremos?}\\ \midrule
+$(a,b)$ & $a<x<b$ & ninguno (círculo vacío)\\
+$[a,b]$ & $a\le x\le b$ & ambos (círculo lleno)\\
+$[a,b)$ & $a\le x<b$ & solo $a$\\
+$(a,\infty)$ & $x>a$ & el infinito nunca se incluye\\
+$\{a\}$ & solo el número $a$ & --- \\ \bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Operaciones con conjuntos}
+\begin{itemize}[nosep]
+  \item $A\cup B$ (\textbf{unión}): los que están en $A$ \textbf{o} en $B$ (juntar todo).
+  \item $A\cap B$ (\textbf{intersección}): los que están en $A$ \textbf{y} en $B$ (lo que se repite).
+  \item $A^c$ (\textbf{complemento}): todos los reales que \emph{no} están en $A$.
+  \item $A-B$ (\textbf{diferencia}): los de $A$ que no están en $B$. Es lo mismo que $A\cap B^c$.
+\end{itemize}
+
+\subsection{Tabla de signos (para inecuaciones con fracciones)}
+Queremos saber cuándo una fracción es positiva o negativa. Receta:
+\begin{enumerate}[nosep]
+  \item Factoriza el numerador y el denominador.
+  \item Los números que hacen cero algún factor son los \textbf{puntos críticos}. Ordénalos en la recta.
+  \item Eso divide la recta en intervalos. En cada intervalo el signo de cada factor es constante: pruébalo con un número cualquiera del intervalo.
+  \item Multiplica los signos para saber el signo de la fracción.
+  \item Cuidado con los extremos: los ceros del \textbf{denominador nunca} se incluyen.
+\end{enumerate}
+
+\subsection{Distancia de un punto a una recta}
+Para el punto $(x_0,y_0)$ y la recta $Ax+By+C=0$:
+\[ d=\frac{|Ax_0+By_0+C|}{\sqrt{A^2+B^2}}. \]
+
+\newpage
+% =====================================================================
+\section{Parte I: Recta y circunferencia (3 ejercicios)}
+% =====================================================================
+
+\subsection{Teoría que necesitas, desde cero}
+
+\begin{idea}
+\textbf{Circunferencia} = todos los puntos que están a la misma distancia $r$ (el radio) de un punto fijo $C$ (el centro).
+Si $C=(h,k)$, su ecuación es
+\[ (x-h)^2+(y-k)^2=r^2. \]
+
+\textbf{Recta tangente} = una recta que toca la circunferencia en \textbf{un solo punto}.
+Dos hechos clave:
+\begin{enumerate}[nosep]
+  \item La tangente es \textbf{perpendicular} al radio que llega al punto de tangencia.
+  \item Una recta es tangente si y solo si la \textbf{distancia del centro a la recta es igual al radio}.
+\end{enumerate}
+
+\textbf{Rectas paralelas} tienen la misma pendiente: si una es $Ax+By+C=0$, las paralelas son $Ax+By+k=0$ (cambia solo el número $k$).
+\textbf{Rectas perpendiculares}: el producto de las pendientes es $-1$. Si una es $Ax+By+C=0$, una perpendicular es $Bx-Ay+k=0$.
+\end{idea}
+
+\begin{idea}
+\textbf{Completar cuadrados} (para pasar de $x^2+y^2+Dx+Ey+F=0$ a la forma $(x-h)^2+(y-k)^2=r^2$).
+\begin{enumerate}[nosep]
+  \item Si $x^2$ y $y^2$ tienen un número delante, divide toda la ecuación entre ese número.
+  \item Pasa el término independiente al otro lado.
+  \item Para el grupo $x^2+Dx$: toma la mitad de $D$, elévala al cuadrado, y \textbf{súmala en ambos lados}. Entonces $x^2+Dx+\left(\frac D2\right)^2=\left(x+\frac D2\right)^2$.
+  \item Haz lo mismo con $y$.
+\end{enumerate}
+\end{idea}
+
+% ------------------------------------------------------------------
+\subsection{Ejercicio 1.1}
+\begin{enunciado}
+El centro de una circunferencia se encuentra en las rectas $18x-24y-1=0$ y $4x+3y+4=0$, y el radio mide $5/6$.
+Encuentre las ecuaciones de las rectas tangentes a la circunferencia en los puntos donde las rectas dadas la interceptan.
+\end{enunciado}
+
+\paso{1: ¿Qué nos piden?} Hay dos rectas que pasan por el centro, así que cada una corta la circunferencia en 2 puntos: 4 puntos en total.
+En cada uno hay una tangente: esperamos \textbf{4 tangentes}.
+
+\paso{2: Hallar el centro.} El centro está en ambas rectas, o sea es el punto donde se cruzan. Resolvemos el sistema:
+\[
+\text{(1)}\ 18x-24y=1,\qquad \text{(2)}\ 4x+3y=-4.
+\]
+Multiplico (2) por $8$ para que la $y$ quede con $24$:
+\[ \text{(3)}\ 32x+24y=-32. \]
+Sumo (1) y (3): los términos en $y$ se cancelan ($-24y+24y=0$):
+\[ 18x+32x=1-32\ \Rightarrow\ 50x=-31\ \Rightarrow\ x=-\frac{31}{50}. \]
+Sustituyo en (2): $4\left(-\frac{31}{50}\right)+3y=-4$, es decir $-\frac{62}{25}+3y=-4$. Entonces
+\[ 3y=-4+\frac{62}{25}=\frac{-100+62}{25}=-\frac{38}{25}\ \Rightarrow\ y=-\frac{38}{75}. \]
+\[ C\left(-\tfrac{31}{50},\,-\tfrac{38}{75}\right). \]
+\textbf{Verificación en (1):} $18\left(-\frac{31}{50}\right)=-\frac{279}{25}$ y $24\left(-\frac{38}{75}\right)=-\frac{304}{25}$.
+Entonces $-\frac{279}{25}+\frac{304}{25}-1=\frac{25}{25}-1=0$ \checkmark.
+
+\paso{3: Observar que las rectas son perpendiculares.}
+Pendiente de $18x-24y-1=0$: $y=\frac{18x-1}{24}$, pendiente $\frac{18}{24}=\frac34$.
+Pendiente de $4x+3y+4=0$: pendiente $-\frac43$.
+Producto: $\frac34\cdot\left(-\frac43\right)=-1$. Son perpendiculares. Esto nos ahorra trabajo.
+
+\paso{4: Tangentes en los puntos de la primera recta ($L_1$).}
+En esos puntos, el radio va a lo largo de $L_1$. La tangente es perpendicular al radio, así que es perpendicular a $L_1$.
+Como $L_2$ también es perpendicular a $L_1$, la tangente es \textbf{paralela a $L_2$}:
+\[ 4x+3y+k=0. \]
+Para que sea tangente, la distancia del centro a esta recta debe ser $r=\frac56$. Primero calculo $4x_C+3y_C$:
+\[ 4\left(-\tfrac{31}{50}\right)+3\left(-\tfrac{38}{75}\right)=-\tfrac{62}{25}-\tfrac{38}{25}=-\tfrac{100}{25}=-4. \]
+(Tiene sentido: el centro está en $L_2$, donde $4x+3y=-4$.) Entonces
+\[ \frac{|-4+k|}{\sqrt{4^2+3^2}}=\frac56\ \Rightarrow\ \frac{|k-4|}{5}=\frac56\ \Rightarrow\ |k-4|=\frac{25}{6}. \]
+Dos casos por el valor absoluto:
+\[ k-4=\frac{25}6\Rightarrow k=\frac{49}6,\qquad k-4=-\frac{25}6\Rightarrow k=-\frac16. \]
+Escribo las rectas y multiplico por $6$ para quitar fracciones:
+\[ 4x+3y+\tfrac{49}{6}=0\ \to\ 24x+18y+49=0,\qquad 4x+3y-\tfrac16=0\ \to\ 24x+18y-1=0. \]
+
+\paso{5: Tangentes en los puntos de la segunda recta ($L_2$).}
+Por el mismo razonamiento, la tangente es paralela a $L_1$: $3x-4y+m=0$ (dividí $18x-24y$ entre $6$).
+Calculo $3x_C-4y_C$ (el centro está en $L_1$, donde $18x-24y=1$, o sea $3x-4y=\frac16$):
+\[ 3\left(-\tfrac{31}{50}\right)-4\left(-\tfrac{38}{75}\right)=-\tfrac{93}{50}+\tfrac{152}{75}=\tfrac{-279+304}{150}=\tfrac16. \]
+Distancia igual al radio:
+\[ \frac{|\frac16+m|}{\sqrt{9+16}}=\frac56\ \Rightarrow\ \left|m+\tfrac16\right|=\frac{25}6. \]
+\[ m+\tfrac16=\tfrac{25}6\Rightarrow m=4,\qquad m+\tfrac16=-\tfrac{25}6\Rightarrow m=-\tfrac{26}{6}=-\tfrac{13}3. \]
+Rectas: $3x-4y+4=0$ y $3x-4y-\tfrac{13}3=0$, que multiplicada por $3$ es $9x-12y-13=0$.
+
+\paso{6: Puntos de tangencia (para comprobar).}
+Los puntos están a distancia $\frac56$ del centro sobre cada recta.
+Sobre $L_1$ (dirección $(4,3)/5$): $C\pm\frac56\cdot\frac{(4,3)}5=C\pm\left(\frac23,\frac12\right)$.
+Sobre $L_2$ (dirección $(3,-4)/5$): $C\pm\left(\frac12,-\frac23\right)$.
+Cada tangente toca en uno de estos puntos:
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+\textbf{Tangente} & \textbf{Punto de tangencia}\\ \midrule
+$24x+18y-1=0$ & $\left(\frac7{150},-\frac1{150}\right)$\\
+$24x+18y+49=0$ & $\left(-\frac{193}{150},-\frac{151}{150}\right)$\\
+$3x-4y+4=0$ & $\left(-\frac{28}{25},\frac4{25}\right)$\\
+$9x-12y-13=0$ & $\left(-\frac3{25},-\frac{88}{75}\right)$\\ \bottomrule
+\end{tabular}
+\end{center}
+\textbf{Verificación de uno:} $24\cdot\frac7{150}+18\cdot\left(-\frac1{150}\right)-1=\frac{168-18}{150}-1=0$ \checkmark.
+
+\begin{respuesta}
+$24x+18y+49=0,\quad 24x+18y-1=0,\quad 3x-4y+4=0,\quad 9x-12y-13=0.$
+\end{respuesta}
+
+% ------------------------------------------------------------------
+\subsection{Ejercicio 1.2}
+\begin{enunciado}
+Hallar las ecuaciones de las dos rectas paralelas que son tangentes a la circunferencia
+$x^2+y^2-4x+2y+\frac52=0$, sabiendo que una de ellas tiene punto de tangencia $P\left(\frac52,\frac12\right)$.
+\end{enunciado}
+
+\paso{1: Pasar la circunferencia a forma canónica.} Agrupo:
+$(x^2-4x)+(y^2+2y)=-\frac52$.
+La mitad de $-4$ es $-2$, su cuadrado es $4$. La mitad de $2$ es $1$, su cuadrado es $1$. Sumo $4$ y $1$ en ambos lados:
+\[ (x^2-4x+4)+(y^2+2y+1)=-\tfrac52+4+1=\tfrac52. \]
+\[ (x-2)^2+(y+1)^2=\tfrac52. \]
+Centro $C(2,-1)$ y $r^2=\frac52$.
+
+\paso{2: Verificar que $P$ está en la circunferencia.}
+$\left(\frac52-2\right)^2+\left(\frac12+1\right)^2=\left(\frac12\right)^2+\left(\frac32\right)^2=\frac14+\frac94=\frac{10}4=\frac52$ \checkmark.
+
+\paso{3: Primera tangente (en $P$).}
+Vector del radio: $\overrightarrow{CP}=\left(\frac52-2,\ \frac12-(-1)\right)=\left(\frac12,\frac32\right)$, que tiene la misma dirección que $(1,3)$.
+La tangente es perpendicular al radio, así que la ecuación $a(x-x_P)+b(y-y_P)=0$ con $(a,b)=(1,3)$:
+\[ 1\cdot\left(x-\tfrac52\right)+3\left(y-\tfrac12\right)=0\ \Rightarrow\ x+3y-\tfrac52-\tfrac32=0\ \Rightarrow\ x+3y-4=0. \]
+
+\paso{4: Segunda tangente.} Una recta paralela y también tangente toca por el lado \textbf{opuesto} de la circunferencia: en el extremo contrario del diámetro que pasa por $P$.
+Ese punto es $P'=2C-P=(4-\frac52,\,-2-\frac12)=\left(\frac32,-\frac52\right)$.
+Tiene la misma normal $(1,3)$:
+\[ \left(x-\tfrac32\right)+3\left(y+\tfrac52\right)=0\ \Rightarrow\ x+3y-\tfrac32+\tfrac{15}2=0\ \Rightarrow\ x+3y+6=0. \]
+
+\paso{5: Verificación por distancia.} Distancia de $C(2,-1)$ a $x+3y+6=0$:
+$\dfrac{|2-3+6|}{\sqrt{1+9}}=\dfrac5{\sqrt{10}}$. Y $\left(\dfrac5{\sqrt{10}}\right)^2=\dfrac{25}{10}=\dfrac52=r^2$ \checkmark.
+
+\begin{respuesta}
+$x+3y-4=0\qquad\text{y}\qquad x+3y+6=0.$
+\end{respuesta}
+
+% ------------------------------------------------------------------
+\subsection{Ejercicio 1.3}
+\begin{enunciado}
+Hallar las tangentes a la circunferencia $3x^2+3y^2+2x-12y+8=0$ que son perpendiculares a la recta tangente en $P\left(\frac23,\frac83\right)$.
+\end{enunciado}
+
+\paso{1: Forma canónica.} Los términos $x^2$ y $y^2$ tienen un $3$ delante: divido toda la ecuación entre $3$:
+\[ x^2+y^2+\tfrac23x-4y+\tfrac83=0. \]
+Agrupo y paso el término independiente:
+$\left(x^2+\tfrac23x\right)+\left(y^2-4y\right)=-\tfrac83$.
+La mitad de $\frac23$ es $\frac13$, su cuadrado $\frac19$. La mitad de $-4$ es $-2$, su cuadrado $4$. Sumo $\frac19$ y $4$ a ambos lados:
+\[ \left(x+\tfrac13\right)^2+(y-2)^2=-\tfrac83+\tfrac19+4=\tfrac{-24+1+36}{9}=\tfrac{13}9. \]
+Centro $C\left(-\frac13,2\right)$, $r^2=\frac{13}9$, $r=\frac{\sqrt{13}}3$.
+
+\paso{2: Verificar $P$.} $\left(\frac23+\frac13\right)^2+\left(\frac83-2\right)^2=1+\left(\frac23\right)^2=1+\frac49=\frac{13}9$ \checkmark.
+
+\paso{3: Tangente en $P$.}
+$\overrightarrow{CP}=\left(\frac23+\frac13,\ \frac83-2\right)=\left(1,\frac23\right)\parallel(3,2)$ (multiplicado por $3$).
+\[ 3\left(x-\tfrac23\right)+2\left(y-\tfrac83\right)=0\ \Rightarrow\ 3x+2y-2-\tfrac{16}3=0\ \Rightarrow\ 9x+6y-22=0. \]
+Su pendiente es $-\frac{9}{6}=-\frac32$.
+
+\paso{4: Rectas perpendiculares a esa tangente.} Pendiente perpendicular: $-1\div\left(-\frac32\right)=\frac23$.
+Una recta con pendiente $\frac23$ es $2x-3y+k=0$ (pues $y=\frac{2x+k}3$).
+
+\paso{5: Condición de tangencia (distancia $=r$).}
+\[ \frac{\left|2\left(-\frac13\right)-3(2)+k\right|}{\sqrt{4+9}}=\frac{\sqrt{13}}3
+\ \Rightarrow\ \left|k-\tfrac23-6\right|=\frac{\sqrt{13}\cdot\sqrt{13}}3=\frac{13}3. \]
+Como $-\frac23-6=-\frac{20}3$: $\left|k-\frac{20}3\right|=\frac{13}3$.
+\[ k-\tfrac{20}3=\tfrac{13}3\Rightarrow k=11,\qquad k-\tfrac{20}3=-\tfrac{13}3\Rightarrow k=\tfrac73. \]
+Rectas: $2x-3y+11=0$ y $2x-3y+\frac73=0$ (multiplico por $3$: $6x-9y+7=0$).
+
+\begin{respuesta}
+$2x-3y+11=0\qquad\text{y}\qquad 6x-9y+7=0.$
+\end{respuesta}
+
+\newpage
+% =====================================================================
+\section{Parte II: Ruffini y teorema del residuo (5 ejercicios)}
+% =====================================================================
+
+\subsection{Teoría que necesitas, desde cero}
+
+\begin{idea}
+\textbf{Dividir polinomios.} Igual que $17\div5$ da cociente $3$ y resto $2$ (porque $17=5\cdot3+2$), al dividir un polinomio $p(x)$ entre $(x-r)$ se obtiene un cociente $c(x)$ y un resto $R$:
+\[ p(x)=(x-r)\cdot c(x)+R. \]
+
+\textbf{Teorema del residuo.} Si evalúas $p$ en $x=r$, el término $(x-r)$ se vuelve cero y queda $p(r)=R$.
+O sea: \textbf{el resto de dividir entre $(x-r)$ es simplemente $p(r)$}.
+
+\textbf{Teorema del factor.} Si $p(r)=0$, el resto es $0$: $(x-r)$ es un factor exacto y $r$ es una \textbf{raíz} (un cero) de $p$.
+\end{idea}
+
+\begin{idea}
+\textbf{Cómo se hace la tabla de Ruffini} (división sintética) para dividir entre $(x-r)$:
+\begin{enumerate}[nosep]
+  \item Escribe los coeficientes de $p$ de mayor a menor grado. \textbf{Si falta una potencia, escribe $0$.}
+  \item A la izquierda escribe $r$. Si el divisor es $x+2$, entonces $r=-2$ (porque $x+2=x-(-2)$).
+  \item Baja el primer coeficiente.
+  \item Multiplica el número que bajaste por $r$ y escribe el resultado \textbf{debajo del siguiente coeficiente}. Suma. Escribe la suma abajo.
+  \item Repite hasta el final.
+  \item El último número es el resto. Los demás son los coeficientes del cociente, que tiene un grado menos.
+\end{enumerate}
+\end{idea}
+
+\begin{idea}
+\textbf{¿Qué valores de $r$ probar?} Si $p$ tiene coeficientes enteros y su primer coeficiente es $1$, las raíces enteras son \textbf{divisores del término independiente} (el número sin $x$).
+Por ejemplo, para $p(x)=x^6-\dots+480$ los candidatos son los divisores de $480$, con signo $+$ y $-$.
+Cuando encuentras una raíz, \textbf{trabajas con el cociente} (de grado menor) y repites.
+Si una raíz sale otra vez, es una raíz doble.
+\end{idea}
+
+% ------------------------------------------------------------------
+\subsection{Ejercicio 2.1.1}
+\begin{enunciado}
+Realice la división sintética y aplique el teorema del residuo:
+$p(x)=x^6+4x^5-3x^4+2x^3-5x^2+7x-9$, \quad $q(x)=x+2$.
+\end{enunciado}
+
+\paso{1: Coeficientes.} $1,\ 4,\ -3,\ 2,\ -5,\ 7,\ -9$ (no falta ninguna potencia).
+
+\paso{2: Valor de $r$.} $x+2=x-(-2)$, así que $r=-2$.
+
+\paso{3: Llenar la tabla.} Voy paso a paso:
+\begin{itemize}[nosep]
+  \item Bajo el $1$.
+  \item $1\cdot(-2)=-2$; $4+(-2)=2$.
+  \item $2\cdot(-2)=-4$; $-3+(-4)=-7$.
+  \item $-7\cdot(-2)=14$; $2+14=16$.
+  \item $16\cdot(-2)=-32$; $-5+(-32)=-37$.
+  \item $-37\cdot(-2)=74$; $7+74=81$.
+  \item $81\cdot(-2)=-162$; $-9+(-162)=-171$.
+\end{itemize}
+\[
+\begin{array}{r|rrrrrrr}
+ & 1 & 4 & -3 & 2 & -5 & 7 & -9\\
+-2 & & -2 & -4 & 14 & -32 & 74 & -162\\ \hline
+ & 1 & 2 & -7 & 16 & -37 & 81 & -171
+\end{array}
+\]
+\paso{4: Leer el resultado.}
+Cociente (grado $5$): $c(x)=x^5+2x^4-7x^3+16x^2-37x+81$. \quad Resto: $R=-171$.
+
+\paso{5: Teorema del residuo (comprobación).} El resto debe ser $p(-2)$:
+\[ p(-2)=(-2)^6+4(-2)^5-3(-2)^4+2(-2)^3-5(-2)^2+7(-2)-9 \]
+\[ =64-128-48-16-20-14-9=-171.\ \checkmark \]
+\begin{respuesta}
+$c(x)=x^5+2x^4-7x^3+16x^2-37x+81,\quad R=-171=p(-2).$
+\end{respuesta}
+
+% ------------------------------------------------------------------
+\subsection{Ejercicio 2.1.2}
+\begin{enunciado}
+$p(x)=3x^6-5x^5+4x^4-2x^3+x^2-6x+8$, \quad $q(x)=x-3$.
+\end{enunciado}
+
+\paso{1:} Coeficientes: $3,\ -5,\ 4,\ -2,\ 1,\ -6,\ 8$. Divisor $x-3$, entonces $r=3$.
+
+\paso{2: Llenar la tabla.}
+\begin{itemize}[nosep]
+  \item Bajo el $3$.
+  \item $3\cdot3=9$; $-5+9=4$.
+  \item $4\cdot3=12$; $4+12=16$.
+  \item $16\cdot3=48$; $-2+48=46$.
+  \item $46\cdot3=138$; $1+138=139$.
+  \item $139\cdot3=417$; $-6+417=411$.
+  \item $411\cdot3=1233$; $8+1233=1241$.
+\end{itemize}
+\[
+\begin{array}{r|rrrrrrr}
+ & 3 & -5 & 4 & -2 & 1 & -6 & 8\\
+3 & & 9 & 12 & 48 & 138 & 417 & 1233\\ \hline
+ & 3 & 4 & 16 & 46 & 139 & 411 & 1241
+\end{array}
+\]
+\paso{3: Leer el resultado.} Cociente: $c(x)=3x^5+4x^4+16x^3+46x^2+139x+411$. Resto: $R=1241$.
+
+\paso{4: Teorema del residuo.} $R=p(3)=1241$ (se puede comprobar evaluando $p(3)$ directamente: $3\cdot729-5\cdot243+4\cdot81-2\cdot27+9-18+8=2187-1215+324-54+9-18+8=1241$ \checkmark).
+\begin{respuesta}
+$c(x)=3x^5+4x^4+16x^3+46x^2+139x+411,\quad R=1241=p(3).$
+\end{respuesta}
+
+% ------------------------------------------------------------------
+\subsection{Ejercicio 2.2}
+\begin{enunciado}
+Si $p(x)=tx^3-1$ y $p(x)+p(2x)+p(3x)=28x^2-9$, hallar el valor de $t$.
+\end{enunciado}
+
+\paso{1: Calcular cada término.} Reemplazo $x$ por $2x$ y por $3x$:
+\[ p(2x)=t(2x)^3-1=8tx^3-1,\qquad p(3x)=t(3x)^3-1=27tx^3-1. \]
+
+\paso{2: Sumar.}
+\[ p(x)+p(2x)+p(3x)=(1+8+27)\,tx^3-1-1-1=36t\,x^3-3. \]
+
+\paso{3: Comparar con el lado derecho.} Debería cumplirse $36t\,x^3-3=28x^2-9$ para todo $x$. Dos polinomios son iguales solo si tienen los \textbf{mismos coeficientes en cada potencia}:
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+Potencia & Lado izquierdo & Lado derecho\\ \midrule
+$x^3$ & $36t$ & $0$\\
+$x^2$ & $0$ & $28$\\
+constante & $-3$ & $-9$\\ \bottomrule
+\end{tabular}
+\end{center}
+Ya la fila de $x^2$ da $0=28$ y la de constantes $-3=-9$: \textbf{imposible}.
+
+\begin{cuidado}
+Con el enunciado \textbf{tal como está escrito}, no existe ningún valor de $t$. Es un problema mal escrito (yo comprobé el PDF original y dice exactamente eso).
+\end{cuidado}
+
+\paso{4: Versión que seguramente se quería.} Si fuera $p(x)=tx^2-3$:
+\[ p(x)+p(2x)+p(3x)=t\left(1+4+9\right)x^2-3-3-3=14t\,x^2-9. \]
+Igualando con $28x^2-9$: las constantes coinciden ($-9=-9$ \checkmark) y $14t=28$, entonces $t=2$.
+
+\begin{respuesta}
+Tal como está escrito: \textbf{no existe $t$}. Si el polinomio fuera $p(x)=tx^2-3$: $t=2$. Pregunta al profesor cuál es el enunciado correcto.
+\end{respuesta}
+
+% ------------------------------------------------------------------
+\subsection{Ejercicio 2.3.1}
+\begin{enunciado}
+Encontrar todos los ceros reales de $p(x)=x^6-5x^5-23x^4+121x^3+82x^2-656x+480$ con Ruffini.
+\end{enunciado}
+
+\paso{1: Candidatos.} El primer coeficiente es $1$, así que las raíces enteras dividen a $480$:
+$\pm1,\pm2,\pm3,\pm4,\pm5,\pm6,\pm8,\pm10,\dots$
+
+\paso{2: Probar $r=1$.} Primero compruebo rápido: $p(1)=1-5-23+121+82-656+480=0$. Hay raíz. Tabla:
+\[
+\begin{array}{r|rrrrrrr}
+ & 1 & -5 & -23 & 121 & 82 & -656 & 480\\
+1 & & 1 & -4 & -27 & 94 & 176 & -480\\ \hline
+ & 1 & -4 & -27 & 94 & 176 & -480 & 0
+\end{array}
+\]
+Resto $0$. $x=1$ es raíz. Nuevo polinomio (grado $5$): $x^5-4x^4-27x^3+94x^2+176x-480$.
+
+\paso{3: Probar $r=2$ en el cociente.}
+\[
+\begin{array}{r|rrrrrr}
+ & 1 & -4 & -27 & 94 & 176 & -480\\
+2 & & 2 & -4 & -62 & 64 & 480\\ \hline
+ & 1 & -2 & -31 & 32 & 240 & 0
+\end{array}
+\]
+Resto $0$. $x=2$ es raíz. Nuevo polinomio (grado $4$): $x^4-2x^3-31x^2+32x+240$.
+
+\paso{4: Probar $r=-3$.}
+\[
+\begin{array}{r|rrrrr}
+ & 1 & -2 & -31 & 32 & 240\\
+-3 & & -3 & 15 & 48 & -240\\ \hline
+ & 1 & -5 & -16 & 80 & 0
+\end{array}
+\]
+Resto $0$. $x=-3$ es raíz. Nuevo polinomio (grado $3$): $x^3-5x^2-16x+80$.
+
+\paso{5: Probar $r=4$.}
+\[
+\begin{array}{r|rrrr}
+ & 1 & -5 & -16 & 80\\
+4 & & 4 & -4 & -80\\ \hline
+ & 1 & -1 & -20 & 0
+\end{array}
+\]
+Resto $0$. $x=4$ es raíz. Queda $x^2-x-20$.
+
+\paso{6: Terminar.} $x^2-x-20=(x-5)(x+4)$ (busco dos números que multipliquen $-20$ y sumen $-1$: $-5$ y $4$). Raíces $5$ y $-4$. (También se ve con Ruffini: $r=5$ da $1,\,4,\,0$.)
+
+\paso{7: Verificación.} Para un polinomio mónico de grado $6$, la suma de las raíces es el opuesto del coeficiente de $x^5$:
+$1+2-3+4+5-4=5$, y el coeficiente es $-5$, su opuesto es $5$ \checkmark.
+\begin{respuesta}
+$p(x)=(x-1)(x-2)(x+3)(x-4)(x-5)(x+4)$. \quad Ceros reales: $-4,\ -3,\ 1,\ 2,\ 4,\ 5$.
+\end{respuesta}
+
+% ------------------------------------------------------------------
+\subsection{Ejercicio 2.3.2}
+\begin{enunciado}
+Encontrar todos los ceros reales de $p(x)=x^7-22x^5+16x^4+129x^3-160x^2-108x+144$.
+\end{enunciado}
+
+\begin{cuidado}
+Falta el término en $x^6$ (no aparece). Hay que escribir su coeficiente como $0$. Los coeficientes son:
+$1,\ 0,\ -22,\ 16,\ 129,\ -160,\ -108,\ 144$.
+\end{cuidado}
+
+\paso{1: Candidatos.} Divisores de $144$: $\pm1,\pm2,\pm3,\pm4,\pm6,\pm8,\pm9,\dots$
+
+\paso{2: $r=1$.} $p(1)=1-22+16+129-160-108+144=0$. Tabla:
+\[
+\begin{array}{r|rrrrrrrr}
+ & 1 & 0 & -22 & 16 & 129 & -160 & -108 & 144\\
+1 & & 1 & 1 & -21 & -5 & 124 & -36 & -144\\ \hline
+ & 1 & 1 & -21 & -5 & 124 & -36 & -144 & 0
+\end{array}
+\]
+\paso{3: $r=-1$.}
+\[
+\begin{array}{r|rrrrrrr}
+ & 1 & 1 & -21 & -5 & 124 & -36 & -144\\
+-1 & & -1 & 0 & 21 & -16 & -108 & 144\\ \hline
+ & 1 & 0 & -21 & 16 & 108 & -144 & 0
+\end{array}
+\]
+\paso{4: $r=2$.}
+\[
+\begin{array}{r|rrrrrr}
+ & 1 & 0 & -21 & 16 & 108 & -144\\
+2 & & 2 & 4 & -34 & -36 & 144\\ \hline
+ & 1 & 2 & -17 & -18 & 72 & 0
+\end{array}
+\]
+\paso{5: $r=2$ otra vez} (siempre se vuelve a probar la misma raíz).
+\[
+\begin{array}{r|rrrrr}
+ & 1 & 2 & -17 & -18 & 72\\
+2 & & 2 & 8 & -18 & -72\\ \hline
+ & 1 & 4 & -9 & -36 & 0
+\end{array}
+\]
+Resto $0$ de nuevo: $x=2$ es una raíz \textbf{doble}.
+
+\paso{6: $r=3$.}
+\[
+\begin{array}{r|rrrr}
+ & 1 & 4 & -9 & -36\\
+3 & & 3 & 21 & 36\\ \hline
+ & 1 & 7 & 12 & 0
+\end{array}
+\]
+\paso{7: Terminar.} Queda $x^2+7x+12=(x+3)(x+4)$ (dos números que multipliquen $12$ y sumen $7$: $3$ y $4$). Raíces: $-3$ y $-4$.
+
+\paso{8: Verificación.} Suma de raíces con multiplicidad: $1-1+2+2+3-3-4=0$. Como no hay término en $x^6$, la suma debe ser $0$ \checkmark. Además son $7$ raíces para un polinomio de grado $7$ \checkmark.
+\begin{respuesta}
+$p(x)=(x-1)(x+1)(x-2)^2(x-3)(x+3)(x+4)$. \quad Ceros reales: $-4,\ -3,\ -1,\ 1,\ 2\ (\text{doble}),\ 3$.
+\end{respuesta}
+
+\newpage
+% =====================================================================
+\section{Parte III: Conjuntos (3 ejercicios)}
+% =====================================================================
+
+\subsection{Teoría que necesitas, desde cero}
+
+\begin{idea}
+\textbf{Dominio de una función} $=$ el conjunto de valores de $x$ para los que la fórmula tiene sentido:
+\begin{itemize}[nosep]
+  \item En una fracción, el \textbf{denominador no puede ser cero}.
+  \item Dentro de una raíz cuadrada, lo de adentro debe ser $\ge0$.
+  \item Si una raíz cuadrada está en el denominador, lo de adentro debe ser $>0$ (estricto), porque si fuera $0$ el denominador sería $0$.
+\end{itemize}
+Cuando hay varias condiciones, se cumplen \textbf{todas a la vez}: se intersectan.
+\end{idea}
+
+% ------------------------------------------------------------------
+\subsection{Ejercicio 3.1}
+\begin{enunciado}
+$A=\left\{x\in\R\ \Big|\ \dfrac{x^2-4}{x-3}>0\right\}$, \quad
+$B=\dom(r)$ con $r(x)=\dfrac1{\sqrt{\frac{x-1}{x+4}}}$, \quad
+$C=\{x\in\R\mid x^2-5x+4=0\}$. Determine $F=(A\cap B)\cup C$.
+\end{enunciado}
+
+\paso{1: Conjunto $A$.} Factorizo: $x^2-4=(x-2)(x+2)$. Hay que resolver $\dfrac{(x-2)(x+2)}{x-3}>0$.
+Puntos críticos: $-2,\ 2,\ 3$. Intervalos y signos (pruebo un número en cada uno):
+\begin{center}
+\begin{tabular}{c|cccc}
+Intervalo & $(-\infty,-2)$ & $(-2,2)$ & $(2,3)$ & $(3,\infty)$\\ \hline
+Prueba & $x=-3$ & $x=0$ & $x=2{,}5$ & $x=4$\\
+$x-2$ & $-$ & $-$ & $+$ & $+$\\
+$x+2$ & $-$ & $+$ & $+$ & $+$\\
+$x-3$ & $-$ & $-$ & $-$ & $+$\\ \hline
+Cociente & $-$ & $+$ & $-$ & $+$
+\end{tabular}
+\end{center}
+Pedimos $>0$ (estricto): tomo los intervalos con $+$.
+\[ A=(-2,2)\cup(3,\infty). \]
+
+\paso{2: Conjunto $B$.} $r(x)=\dfrac1{\sqrt{\frac{x-1}{x+4}}}$. La raíz está en el denominador, entonces lo de adentro debe ser \textbf{estrictamente positivo}:
+$\dfrac{x-1}{x+4}>0$. Puntos críticos $-4$ y $1$.
+\begin{center}
+\begin{tabular}{c|ccc}
+Intervalo & $(-\infty,-4)$ & $(-4,1)$ & $(1,\infty)$\\ \hline
+$x-1$ & $-$ & $-$ & $+$\\
+$x+4$ & $-$ & $+$ & $+$\\ \hline
+Cociente & $+$ & $-$ & $+$
+\end{tabular}
+\end{center}
+\[ B=(-\infty,-4)\cup(1,\infty). \]
+
+\paso{3: Conjunto $C$.} $x^2-5x+4=(x-1)(x-4)=0$, entonces $C=\{1,4\}$.
+
+\paso{4: Intersección $A\cap B$} (lo que está en ambos). Comparo:
+\begin{itemize}[nosep]
+  \item $(-2,2)\cap B$: $B$ solo aporta lo que está en $(1,\infty)$: queda $(1,2)$. (De $(-\infty,-4)$ no hay nada, porque $(-2,2)$ empieza en $-2$.)
+  \item $(3,\infty)\cap B=(3,\infty)$.
+\end{itemize}
+\[ A\cap B=(1,2)\cup(3,\infty). \]
+
+\paso{5: Unión con $C$.} Agrego los puntos $1$ y $4$: el $4$ ya está en $(3,\infty)$; el $1$ no estaba, y se pega al intervalo $(1,2)$ haciéndolo $[1,2)$.
+\begin{respuesta}
+$F=[1,2)\cup(3,\infty).$
+\end{respuesta}
+
+% ------------------------------------------------------------------
+\subsection{Ejercicio 3.2}
+\begin{enunciado}
+$A=\{x\in\R\mid x^2-1\le0\}$, \quad
+$B=\dom(s)$ con $s(x)=\sqrt{\dfrac{-x^4+2x^2-5}{(x-2)(x+3)}}$, \quad
+$C=\{x\in\R\mid x^2+x-2=0\}$. Determine $F=(B\cap A^c)-C$.
+\end{enunciado}
+
+\paso{1: Conjunto $A$ y su complemento.} $x^2\le1$ significa $-1\le x\le1$. $A=[-1,1]$.
+El complemento son todos los demás reales: $A^c=(-\infty,-1)\cup(1,\infty)$.
+
+\paso{2: Conjunto $B$.} La raíz exige $\dfrac{-x^4+2x^2-5}{(x-2)(x+3)}\ge0$.
+
+Primero estudio el numerador: $-x^4+2x^2-5=-(x^4-2x^2+5)$. Noto que $x^4-2x^2+5=(x^2-1)^2+4$ (porque $(x^2-1)^2=x^4-2x^2+1$, y $+4$ da $+5$).
+Un cuadrado es $\ge0$, entonces $(x^2-1)^2+4\ge4>0$ siempre. Por eso el numerador $-[\,(x^2-1)^2+4\,]$ es \textbf{siempre negativo}.
+
+Una fracción con numerador negativo es $\ge0$ solo si el denominador es \textbf{negativo} (no puede ser $0$, porque la fracción no existiría):
+\[ (x-2)(x+3)<0. \]
+Puntos críticos $-3$ y $2$; el producto es negativo \textbf{entre} las raíces (parábola abierta hacia arriba).
+\[ B=(-3,2). \]
+
+\paso{3: Conjunto $C$.} $x^2+x-2=(x+2)(x-1)=0$. $C=\{-2,1\}$.
+
+\paso{4: $B\cap A^c$.} Lo que está en $(-3,2)$ pero fuera de $[-1,1]$:
+\[ B\cap A^c=(-3,-1)\cup(1,2). \]
+
+\paso{5: Restar $C$.} Saco $-2$ y $1$ si están:
+\begin{itemize}[nosep]
+  \item $-2\in(-3,-1)$: sí está, lo quito (el intervalo se parte en dos).
+  \item $1$: no está en el conjunto (porque $(1,2)$ no lo incluye), no hay nada que quitar.
+\end{itemize}
+\begin{respuesta}
+$F=(-3,-2)\cup(-2,-1)\cup(1,2).$
+\end{respuesta}
+
+% ------------------------------------------------------------------
+\subsection{Ejercicio 3.3}
+\begin{enunciado}
+$A=\left\{x\in\R\ \Big|\ \dfrac{x-2}{x+1}\ge0\right\}$, \quad
+$B=\dom(p)$ con $p(x)=\dfrac1{x+\sqrt{x+5}-3}$, \quad
+$C=\{x\in\R\mid x^2-x-6=0\}$. Determine $A,B,C$ y $F=(A-B)\cup C$.
+\end{enunciado}
+
+\paso{1: Conjunto $A$.} Puntos críticos: $2$ (cero del numerador) y $-1$ (cero del denominador).
+\begin{center}
+\begin{tabular}{c|ccc}
+Intervalo & $(-\infty,-1)$ & $(-1,2)$ & $(2,\infty)$\\ \hline
+$x-2$ & $-$ & $-$ & $+$\\
+$x+1$ & $-$ & $+$ & $+$\\ \hline
+Cociente & $+$ & $-$ & $+$
+\end{tabular}
+\end{center}
+Como es $\ge0$, incluyo el $2$ (el cociente vale $0$ allí) y \textbf{no} incluyo el $-1$ (la fracción no existe).
+\[ A=(-\infty,-1)\cup[2,\infty). \]
+
+\paso{2: Conjunto $B$: condición 1.} La raíz $\sqrt{x+5}$ exige $x+5\ge0$, o sea $x\ge-5$.
+
+\paso{3: Conjunto $B$: condición 2.} El denominador no puede ser $0$: $x+\sqrt{x+5}-3\ne0$.
+Busco los $x$ que \textbf{sí} lo anulan, para sacarlos:
+\[ x+\sqrt{x+5}-3=0\iff\sqrt{x+5}=3-x. \]
+Como una raíz es $\ge0$, necesito $3-x\ge0$, o sea $x\le3$. Elevo al cuadrado ambos lados:
+\[ x+5=(3-x)^2=9-6x+x^2\ \Rightarrow\ 0=x^2-7x+4. \]
+Fórmula cuadrática ($a=1,\ b=-7,\ c=4$): $x=\dfrac{7\pm\sqrt{49-16}}2=\dfrac{7\pm\sqrt{33}}2$.
+Como $\sqrt{33}\approx5{,}74$:
+\begin{itemize}[nosep]
+  \item $x=\frac{7+\sqrt{33}}2\approx6{,}37$: no cumple $x\le3$. Es una raíz \textbf{extraña} (apareció por elevar al cuadrado). Se descarta.
+  \item $x=\frac{7-\sqrt{33}}2\approx0{,}63$: cumple $x\le3$ \checkmark. Compruebo: $\sqrt{0{,}63+5}\approx2{,}37$ y $3-0{,}63=2{,}37$.
+\end{itemize}
+Por lo tanto
+\[ B=[-5,\infty)\setminus\left\{\tfrac{7-\sqrt{33}}2\right\}. \]
+
+\paso{4: Conjunto $C$.} $x^2-x-6=(x-3)(x+2)=0$. $C=\{-2,3\}$.
+
+\paso{5: $A-B=A\cap B^c$.} El complemento de $B$ son los números que \emph{no} están en $B$:
+\[ B^c=(-\infty,-5)\cup\left\{\tfrac{7-\sqrt{33}}2\right\}. \]
+Veo qué parte de eso está en $A$:
+\begin{itemize}[nosep]
+  \item $(-\infty,-5)$: todos son menores que $-5<-1$, y $A$ contiene todo lo menor que $-1$. Está completo en $A$.
+  \item $0{,}63$: $A$ no contiene nada entre $-1$ y $2$. No está en $A$.
+\end{itemize}
+Entonces $A-B=(-\infty,-5)$.
+
+\paso{6: Unión con $C$.} Agrego $-2$ y $3$ (no están en $(-\infty,-5)$).
+\begin{respuesta}
+$A=(-\infty,-1)\cup[2,\infty)$, \quad $B=[-5,\infty)\setminus\left\{\frac{7-\sqrt{33}}2\right\}$, \quad $C=\{-2,3\}$,\\[0.3em]
+$F=(-\infty,-5)\cup\{-2,3\}.$
+\end{respuesta}
+
+\newpage
+% =====================================================================
+\section{Parte IV: Dominio y afirmaciones verdadero/falso (3 ejercicios)}
+% =====================================================================
+
+\subsection{Teoría que necesitas, desde cero}
+
+\begin{idea}
+\textbf{Cómo contestar un verdadero/falso sobre dominios:}
+\begin{enumerate}[nosep]
+  \item Calcula el dominio completo de la función.
+  \item Traduce la afirmación a conjuntos:
+  \begin{itemize}[nosep]
+    \item $\forall x\in S,\ x\in\dom(f)$ se lee ``para todo $x$ en $S$, $x$ está en el dominio'': significa que $S$ está \emph{contenido} en $\dom(f)$.
+    \item $\exists!\,x\in S$ tal que $x\notin\dom(f)$ se lee ``existe exactamente un $x$ en $S$ que no está en el dominio''.
+  \end{itemize}
+  \item Compara los conjuntos y decide. Si es falsa, da un ejemplo concreto que la contradiga (\emph{contraejemplo}).
+\end{enumerate}
+\end{idea}
+
+% ------------------------------------------------------------------
+\subsection{Ejercicio 4.1}
+\begin{enunciado}
+$f(x)=\sqrt{-\dfrac{x+1}{1-x}}$. ¿Es verdadera o falsa la afirmación $\forall x\in\R\setminus(-1,1],\ x\in\dom(f)$? Justifique.
+\end{enunciado}
+
+\paso{1: Condiciones.} (i) Lo de adentro de la raíz debe ser $\ge0$: $-\dfrac{x+1}{1-x}\ge0$. (ii) $1-x\ne0$, o sea $x\ne1$.
+
+\paso{2: Simplificar el signo.} Observo que $-\dfrac1{1-x}=\dfrac1{-(1-x)}=\dfrac1{x-1}$. Entonces la condición es
+\[ \frac{x+1}{x-1}\ge0. \]
+Puntos críticos: $-1$ (numerador: se incluye) y $1$ (denominador: no se incluye).
+\begin{center}
+\begin{tabular}{c|ccc}
+Intervalo & $(-\infty,-1)$ & $(-1,1)$ & $(1,\infty)$\\ \hline
+$x+1$ & $-$ & $+$ & $+$\\
+$x-1$ & $-$ & $-$ & $+$\\ \hline
+Cociente & $+$ & $-$ & $+$
+\end{tabular}
+\end{center}
+Con el $-1$ incluido (da cero, y $\sqrt0=0$ existe):
+\[ \dom(f)=(-\infty,-1]\cup(1,\infty). \]
+
+\paso{3: Interpretar $\R\setminus(-1,1]$.} Son todos los reales menos los del intervalo $(-1,1]$: queda $(-\infty,-1]\cup(1,\infty)$.
+
+\paso{4: Comparar.} Los dos conjuntos son \textbf{idénticos}. Entonces todo $x$ del conjunto está en el dominio.
+\begin{respuesta}
+\textbf{VERDADERA.} El conjunto $\R\setminus(-1,1]$ coincide exactamente con $\dom(f)$.
+\end{respuesta}
+
+% ------------------------------------------------------------------
+\subsection{Ejercicio 4.2}
+\begin{enunciado}
+$g(x)=\dfrac{x^2+2x+5}{x^2+x-6}$. ¿Es verdadero que $\exists!\,x\in[-3,-2)$ tal que $x\notin\dom(g)$? Justifique.
+\end{enunciado}
+
+\paso{1: Dominio.} Solo hay una restricción: denominador $\ne0$.
+$x^2+x-6=(x+3)(x-2)$ (dos números que multipliquen $-6$ y sumen $1$: $3$ y $-2$).
+Se anula en $x=-3$ y en $x=2$. (El numerador no restringe nada.)
+\[ \dom(g)=\R\setminus\{-3,2\}. \]
+
+\paso{2: ¿Cuáles de esos puntos están en $[-3,-2)$?}
+Este intervalo va de $-3$ hasta casi $-2$, \textbf{incluyendo} el $-3$ (corchete) y \textbf{sin} el $-2$ (paréntesis).
+\begin{itemize}[nosep]
+  \item $x=-3$: está en el intervalo y no está en el dominio. \checkmark
+  \item $x=2$: no está en el intervalo.
+\end{itemize}
+Hay exactamente un valor.
+\begin{respuesta}
+\textbf{VERDADERA.} El único punto es $x=-3$.
+\end{respuesta}
+
+% ------------------------------------------------------------------
+\subsection{Ejercicio 4.3}
+\begin{enunciado}
+$h(x)=\dfrac{x+1}{x^2-7x+12}+\dfrac{\sqrt{x^2+2x+5}}{x+4}$. ¿Es verdadero que $\forall x\in\R\setminus\{-4,3,4\},\ x\in\dom(h)$? Justifique.
+\end{enunciado}
+
+\paso{1: Primera fracción.} $x^2-7x+12=(x-3)(x-4)$ (dos números que multipliquen $12$ y sumen $-7$: $-3$ y $-4$). Debe ser $\ne0$: $x\ne3$ y $x\ne4$.
+
+\paso{2: La raíz.} Necesito $x^2+2x+5\ge0$. Completo cuadrados: $x^2+2x+5=(x+1)^2+4$. Un cuadrado es $\ge0$, y le sumo $4$: siempre vale al menos $4$. Entonces \textbf{es positivo para todo real}: la raíz no restringe nada.
+
+\paso{3: Segunda fracción.} Su denominador $x+4\ne0$: $x\ne-4$.
+
+\paso{4: Juntar.} Todas las condiciones a la vez:
+\[ \dom(h)=\R\setminus\{-4,3,4\}. \]
+Es exactamente el conjunto que dice la afirmación.
+\begin{respuesta}
+\textbf{VERDADERA.}
+\end{respuesta}
+
+\newpage
+% =====================================================================
+\section{Resumen de todas las respuestas}
+% =====================================================================
+
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.17\textwidth}>{\raggedright\arraybackslash}p{0.75\textwidth}}
+\toprule
+\textbf{Ejercicio} & \textbf{Respuesta}\\ \midrule
+1.1 & $24x+18y+49=0,\ 24x+18y-1=0,\ 3x-4y+4=0,\ 9x-12y-13=0$\\
+1.2 & $x+3y-4=0$ y $x+3y+6=0$\\
+1.3 & $2x-3y+11=0$ y $6x-9y+7=0$\\
+2.1.1 & $c(x)=x^5+2x^4-7x^3+16x^2-37x+81$, resto $-171$\\
+2.1.2 & $c(x)=3x^5+4x^4+16x^3+46x^2+139x+411$, resto $1241$\\
+2.2 & Sin solución tal como está escrito; con $p(x)=tx^2-3$: $t=2$\\
+2.3.1 & $-4,-3,1,2,4,5$\\
+2.3.2 & $-4,-3,-1,1,2\ (\text{doble}),3$\\
+3.1 & $F=[1,2)\cup(3,\infty)$\\
+3.2 & $F=(-3,-2)\cup(-2,-1)\cup(1,2)$\\
+3.3 & $F=(-\infty,-5)\cup\{-2,3\}$\\
+4.1 & Verdadera\\
+4.2 & Verdadera\\
+4.3 & Verdadera\\ \bottomrule
+\end{tabular}
+\end{center}
+
+\end{document}

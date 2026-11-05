@@ -1,0 +1,20 @@
+\begin{table*}[t]
+\centering\small
+\caption{CartPole-v1 observation magnitudes over 50k steps. Velocities are unbounded in the observation space; the chosen clip bounds cover essentially all visited values.}
+\label{tab:t1_obs_ranges_all}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lrrrrrr}
+\toprule
+Policy & Dimension & $|x|$ p99 & $|x|$ p99.9 & $|x|$ max & Clip bound & Within bound \\
+\midrule
+random & cart position & 0.315 & 0.724 & 1.155 & 2.4 & 100.00\% \\
+random & cart velocity & 1.499 & 1.943 & 2.829 & 3 & 100.00\% \\
+random & pole angle & 0.204 & 0.209 & 0.209 & 0.2095 & 100.00\% \\
+random & pole ang. velocity & 2.044 & 2.480 & 2.924 & 3.5 & 100.00\% \\
+trained DQN & cart position & 2.007 & 2.340 & 2.399 & 2.4 & 100.00\% \\
+trained DQN & cart velocity & 1.530 & 1.733 & 2.096 & 3 & 100.00\% \\
+trained DQN & pole angle & 0.203 & 0.208 & 0.209 & 0.2095 & 100.00\% \\
+trained DQN & pole ang. velocity & 1.141 & 1.471 & 1.701 & 3.5 & 100.00\% \\
+\bottomrule
+\end{tabular}}
+\end{table*}

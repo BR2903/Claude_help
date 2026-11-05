@@ -1,0 +1,11 @@
+{
+  "method": "qlearning",
+  "gamma": 0.99,
+  "alpha": 0.5,
+  "alpha_scale": 50,
+  "alpha_power": 0.6,
+  "epsilon_start": 1.0,
+  "epsilon_end": 0.05,
+  "decay_fraction": 0.8,
+  "initial_q": 0.0
+}

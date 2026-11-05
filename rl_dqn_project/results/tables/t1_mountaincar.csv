@@ -1,0 +1,5 @@
+Config,Final greedy,Best greedy,Seeds reaching flag,Median first flag,Successful train eps,CPU s/run
+"Tabular, Q0 = 0 (optimistic)",-176.2 ± 9.6,-147.6 ± 6.0,10/10,113.1k,703,39
+"Tabular, Q0 = −100",-200.0 ± 0.0,-200.0 ± 0.0,0/10,--,0,46
+"DQN, ε decay 30k",-188.7 ± 17.4,-168.3 ± 34.0,3/10,93.8k,595,1038
+"DQN, ε decay 150k",-174.2 ± 30.2,-163.8 ± 31.5,3/10,118.0k,514,793

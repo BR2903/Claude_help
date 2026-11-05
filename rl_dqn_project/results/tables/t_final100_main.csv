@@ -1,0 +1,8 @@
+Env,Config,100-ep mean (final weights),Best seed,Seeds ≥ threshold,Threshold
+CartPole-v1,dqn_eps5k,300.2 ± 153.5,500.0,5/10,475
+CartPole-v1,tabular_bins10,384.6 ± 87.5,496.1,4/10,475
+MountainCar-v0,dqn,-188.4 ± 17.9,-131.6,0/10,-110
+MountainCar-v0,tabular_optimistic,-174.2 ± 11.4,-151.4,0/10,-110
+LunarLander-v3,full,226.9 ± 34.3,272.9,7/10,200
+LunarLander-v3,no_replay,-442.2 ± 303.1,-125.9,0/10,200
+LunarLander-v3,no_target,188.2 ± 69.6,281.4,6/10,200

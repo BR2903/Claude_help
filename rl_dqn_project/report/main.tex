@@ -1,0 +1,50 @@
+\documentclass[10pt,twocolumn]{article}
+
+\usepackage[margin=0.75in,columnsep=0.25in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xcolor}
+\usepackage{natbib}
+\usepackage{caption}
+\usepackage{microtype}
+\captionsetup{font=small,labelfont=bf}
+\graphicspath{{../results/figures/}}
+\setlength{\parskip}{0.2em}
+
+\newcommand{\tab}[1]{\input{../results/tables/#1.tex}}
+
+\title{\vspace{-1.2em}Tabular Q-Learning versus Deep Q-Networks:\\ Sample Efficiency, Sparse Rewards and DQN Ablations}
+\author{Aispur Santiago \quad Amaya Bryan\\[0.2em]
+\small Intelligent Agents --- Instructor: PhD Armas Rolando}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+%% RESULTS-DEPENDENT TEXT IS FILLED IN AFTER THE EXPERIMENTS FINISH
+\input{body.tex}
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\appendix
+\section{Most important AI prompts}
+\label{app:prompts}
+\small
+% Add here the key prompts you used earlier in the project (e.g. when building agents/dqn.py,
+% the discretizer, the runner and the report), in the same format.
+\begin{enumerate}
+\item \emph{Requirements check.} We pasted the full project statement and the repository link and asked:
+``Is everything here? We are a group of 2.'' The assistant listed the missing items (Tier 2
+hyper-parameter study, agent videos, AI-use statement, 100-episode evaluation), and we asked it to implement them.
+\item \emph{Tier 2 hyper-parameter study.} Asked to add a one-at-a-time study of the learning rate and the
+target-update period around the default LunarLander configuration, reusing the existing runner, seeds
+and table format (\texttt{experiments/tier2\_hparams.py}).
+\item \emph{Final evaluation and videos.} Asked for a script that reloads the final weights of every run and
+plays 100 greedy episodes against the official thresholds (\texttt{experiments/eval100.py}), and for
+GIFs of a representative (median) seed per agent (\texttt{experiments/make\_gifs.py}).
+\end{enumerate}
+\end{document}

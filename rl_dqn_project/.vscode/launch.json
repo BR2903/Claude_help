@@ -1,0 +1,20 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    { "name": "Tier 1 CartPole (quick)", "type": "debugpy", "request": "launch",
+      "program": "${workspaceFolder}/experiments/tier1_cartpole.py", "args": ["--quick"],
+      "cwd": "${workspaceFolder}", "console": "integratedTerminal", "subProcess": true },
+    { "name": "Tier 1 MountainCar (quick)", "type": "debugpy", "request": "launch",
+      "program": "${workspaceFolder}/experiments/tier1_mountaincar.py", "args": ["--quick"],
+      "cwd": "${workspaceFolder}", "console": "integratedTerminal", "subProcess": true },
+    { "name": "Tier 2 LunarLander (quick)", "type": "debugpy", "request": "launch",
+      "program": "${workspaceFolder}/experiments/tier2_ablation.py", "args": ["--quick"],
+      "cwd": "${workspaceFolder}", "console": "integratedTerminal", "subProcess": true },
+    { "name": "Rebuild all figures/tables (plot only)", "type": "debugpy", "request": "launch",
+      "program": "${workspaceFolder}/experiments/run_all.py", "args": ["--plot-only"],
+      "cwd": "${workspaceFolder}", "console": "integratedTerminal" },
+    { "name": "Watch trained agent (render)", "type": "debugpy", "request": "launch",
+      "program": "${workspaceFolder}/experiments/watch.py", "args": ["--env", "LunarLander-v3"],
+      "cwd": "${workspaceFolder}", "console": "integratedTerminal" }
+  ]
+}

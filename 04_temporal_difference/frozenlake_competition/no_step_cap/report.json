@@ -1,0 +1,127 @@
+{
+  "method": "Q-learning",
+  "gamma": 1.0,
+  "training": {
+    "seed": 20261001,
+    "transitions": 30000,
+    "completed_episodes": 2042,
+    "successes": 248
+  },
+  "runs": [
+    {
+      "seed": 13,
+      "total_reward": 0.8425,
+      "episodes": 2000,
+      "successes": 1685,
+      "holes": 315,
+      "transitions": 97858,
+      "longest_episode": 265,
+      "truncations": 0
+    },
+    {
+      "seed": 15,
+      "total_reward": 0.823,
+      "episodes": 2000,
+      "successes": 1646,
+      "holes": 354,
+      "transitions": 100502,
+      "longest_episode": 325,
+      "truncations": 0
+    },
+    {
+      "seed": 45,
+      "total_reward": 0.834,
+      "episodes": 2000,
+      "successes": 1668,
+      "holes": 332,
+      "transitions": 100164,
+      "longest_episode": 372,
+      "truncations": 0
+    },
+    {
+      "seed": 56,
+      "total_reward": 0.8295,
+      "episodes": 2000,
+      "successes": 1659,
+      "holes": 341,
+      "transitions": 94262,
+      "longest_episode": 339,
+      "truncations": 0
+    },
+    {
+      "seed": 21,
+      "total_reward": 0.8315,
+      "episodes": 2000,
+      "successes": 1663,
+      "holes": 337,
+      "transitions": 95318,
+      "longest_episode": 353,
+      "truncations": 0
+    },
+    {
+      "seed": 1,
+      "total_reward": 0.824,
+      "episodes": 2000,
+      "successes": 1648,
+      "holes": 352,
+      "transitions": 97470,
+      "longest_episode": 298,
+      "truncations": 0
+    },
+    {
+      "seed": 7,
+      "total_reward": 0.8175,
+      "episodes": 2000,
+      "successes": 1635,
+      "holes": 365,
+      "transitions": 98406,
+      "longest_episode": 324,
+      "truncations": 0
+    },
+    {
+      "seed": 9,
+      "total_reward": 0.808,
+      "episodes": 2000,
+      "successes": 1616,
+      "holes": 384,
+      "transitions": 95665,
+      "longest_episode": 316,
+      "truncations": 0
+    },
+    {
+      "seed": 50,
+      "total_reward": 0.818,
+      "episodes": 2000,
+      "successes": 1636,
+      "holes": 364,
+      "transitions": 98984,
+      "longest_episode": 353,
+      "truncations": 0
+    },
+    {
+      "seed": 47,
+      "total_reward": 0.8255,
+      "episodes": 2000,
+      "successes": 1651,
+      "holes": 349,
+      "transitions": 95711,
+      "longest_episode": 274,
+      "truncations": 0
+    }
+  ],
+  "mean_reward": 0.8253499999999999,
+  "std_reward": 0.009706956268573583,
+  "best_reward": 0.8425,
+  "worst_reward": 0.808,
+  "optimal_reward": null,
+  "gap_to_optimal_reward": null,
+  "official_mae": null,
+  "episode_step_cap": null,
+  "evaluation_episodes_per_seed": 2000,
+  "protocol": "One shared table; no TimeLimit; terminal goal/hole; seed each fresh evaluation environment once; frozen greedy policy.",
+  "q_sha256": "3b5ecb0a57a46df7d8feb4fc872387eeab266024fc8e25dc07d758cb47f9ef1f",
+  "python": "3.12.14",
+  "numpy": "2.3.5",
+  "gymnasium": "1.3.0",
+  "elapsed_seconds": 11.55144989999826
+}

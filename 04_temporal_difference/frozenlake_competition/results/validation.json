@@ -1,0 +1,11 @@
+{
+  "ten_rows": true,
+  "correct_columns": true,
+  "distinct_seeds": true,
+  "training_transitions": 30000,
+  "evaluation_episodes": 20000,
+  "frozen_q": true,
+  "exact_training_replay": true,
+  "exact_evaluation_replay": true,
+  "seconds": 7.319183100000373
+}
